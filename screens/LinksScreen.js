@@ -7,7 +7,6 @@ export default class LinksScreen extends React.Component {
   static navigationOptions = {
     title: 'Links',
   };
-
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -20,7 +19,7 @@ export default class LinksScreen extends React.Component {
   }
 
   mapList() {
-    return ExmList.map(v => <Text onPress={() => this.goTo(v)} key={v}>{v}</Text>)
+    return ExmList.map(v => <Text onPress={() => this.goTo(v)} key={v} style={styles.listStyle}>{v}</Text>)
   }
 
   goTo(v) {
@@ -37,7 +36,11 @@ export default class LinksScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
+    // paddingTop: 15,
     backgroundColor: '#fff',
   },
+  listStyle: {
+    marginLeft: '10%',
+    marginTop: '10%',
+  }
 });

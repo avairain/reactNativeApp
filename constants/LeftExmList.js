@@ -1,1 +1,1 @@
-export default ['ActivityIndicator']
+export default ['ActivityIndicator', 'AntDButton']

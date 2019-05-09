@@ -25,10 +25,6 @@ HomeStack.navigationOptions = {
   ),
 };
 
-console.log({
-  Links: LinksScreen,
-  ...LeftExmList
-})
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
   ...LeftExmList
