@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "lint": "eslint . --fix --format=node_modules/eslint-formatter-pretty --quiet"
+    "lint": "eslint . --fix --format=node_modules/eslint-formatter-pretty --quiet",
+    "dev": "react-native run-android",
+    "tools": "react-devtools.cmd"
   },
   "dependencies": {
     "@ant-design/react-native": "^3.1.8",
@@ -33,8 +35,7 @@
     "react-test-renderer": "16.8.3"
   },
   "babel": {
-    "plugins": [
-    ]
+    "plugins": []
   },
   "jest": {
     "preset": "react-native"
