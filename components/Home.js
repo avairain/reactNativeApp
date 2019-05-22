@@ -9,6 +9,6 @@ export default class Home extends Component {
     )
   }
   pressButton() {
-    console.log(1)
+    // console.log(1)
   }
 }

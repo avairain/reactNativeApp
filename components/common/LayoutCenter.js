@@ -10,11 +10,14 @@ export default (p) => (WrappedComponent) => class LayoutCenter extends Component
     return (
       <View style={ wrap }>
         <Text style={ center }>center</Text>
-        <Flex justify="space-around">
-          <Flex.Item>
-            <WrappedComponent style={{ ...w80, ...center }}/>
+        {/* <Flex justify="space-around">
+          <Flex.Item style={{ ...w80, ...center }}>
+            <WrappedComponent/>
           </Flex.Item>
-        </Flex>
+        </Flex> */}
+        <View style={{ ...w80, ...center }}>
+          <WrappedComponent/>
+        </View>
       </View>
     )
   }
@@ -27,6 +30,7 @@ const Styles = (p) => StyleSheet.create({
   },
   center: {
     alignSelf: p || 'center',
+    textAlign: 'center'
   },
   w80: {
     width: '80%'

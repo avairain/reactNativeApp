@@ -24,8 +24,6 @@ export default class LinksScreen extends React.Component {
 
   goTo(v) {
     this.props.navigation.push(v)
-    console.log(v)
-    console.log(this)
     // this.nextTick(() => {
       // console.log(this.props.navigation)
     // })
