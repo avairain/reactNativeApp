@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Image, Platform, TouchableOpacity, Text, TextInput } from 'react-native'
-import { Button } from '@ant-design/react-native'
+import { View, StyleSheet, Image, Platform, TouchableOpacity, Text, TextInput, ToastAndroid } from 'react-native'
+import { Button, Toast} from '@ant-design/react-native'
+
 import LayoutCenter from '../common/LayoutCenter'
 import Ts from '../withTs'
+// import { Toast } from '../common/Common'
 
 @LayoutCenter()
 export class AntDButton extends Component {
@@ -30,11 +32,17 @@ export class AntDButton extends Component {
     this._textInput.setNativeProps({text: ''});
   }
 
+  showToastNoMask() {
+    Toast.info('Toast without mask !!!')
+    // ToastAndroid.show('ToastAndroid', ToastAndroid.SHORT)
+  }
+
   render() {
     // console.log(Platform.Version)
     const { pic, label } = this.state
     return (
         <View >
+          <Text onPress={() => this.showToastNoMask()}>Without mask</Text>
           <Button>ant Button</Button>
           <Image source={ pic } style={{width: 193, height: 110}} />
           <TouchableOpacity
