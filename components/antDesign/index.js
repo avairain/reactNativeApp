@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Image, Platform, TouchableOpacity, Text, TextInput } from 'react-native'
 import { Button } from '@ant-design/react-native'
 import LayoutCenter from '../common/LayoutCenter'
-
+import Ts from '../withTs'
 
 @LayoutCenter()
 export class AntDButton extends Component {
@@ -59,6 +59,7 @@ export class AntDButton extends Component {
           <TouchableOpacity onPress={() => this.clearText()}>
             <MyButton label={ label } />
           </TouchableOpacity>
+          <Ts></Ts>
         </View>
     )
   }
