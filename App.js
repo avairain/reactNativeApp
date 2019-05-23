@@ -6,13 +6,28 @@
  * @flow
  */
 
-import React from 'react';
-import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
-import AppNavigator from './navigation/AppNavigator';
+import React from 'react'
+import { Platform, StatusBar, StyleSheet, View, Text, BackHandler } from 'react-native'
+
+import AppNavigator from './navigation/AppNavigator'
+
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
-  };
+  }
+
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.backFn.bind(this))
+  }
+
+  componentWillUnmount() {
+    this.backHandler.remove()
+  }
+
+  backFn() {
+    console.log('back')
+    return true
+  }
 
   render() {
     return (
@@ -39,4 +54,4 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-});
+})
