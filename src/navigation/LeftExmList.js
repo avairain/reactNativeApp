@@ -1,5 +1,5 @@
 import { Activity } from '../components/LeftExmList/'
-import { AntDButton } from '../components/antDesign/'
+import { AntDButton } from '../components/antDesign'
 
 export default {
   ActivityIndicator: Activity,

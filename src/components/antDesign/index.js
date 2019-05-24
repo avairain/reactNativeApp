@@ -3,8 +3,7 @@ import { View, StyleSheet, Image, Platform, TouchableOpacity, Text, TextInput, T
 import { Button, Toast} from '@ant-design/react-native'
 
 import LayoutCenter from '../common/LayoutCenter'
-import Ts from '../withTs'
-// import { Toast } from '../common/Common'
+import Ts from '../withTs/'
 
 @LayoutCenter()
 export class AntDButton extends Component {
@@ -41,7 +40,7 @@ export class AntDButton extends Component {
     // console.log(Platform.Version)
     const { pic, label } = this.state
     return (
-        <View >
+        <View>
           <Text onPress={() => this.showToastNoMask()}>Without mask</Text>
           <Button>ant Button</Button>
           <Image source={ pic } style={{width: 193, height: 110}} />
@@ -67,6 +66,7 @@ export class AntDButton extends Component {
           <TouchableOpacity onPress={() => this.clearText()}>
             <MyButton label={ label } />
           </TouchableOpacity>
+          <Text>123</Text>      
           <Ts></Ts>
         </View>
     )

@@ -8,7 +8,7 @@ export default (p) => (WrappedComponent) => class LayoutCenter extends Component
   render() {
     const {wrap, center, w80} = Styles(p)
     return (
-      <View style={ wrap }>
+      <View style={{ ...wrap }}>
         <Text style={ center }>center</Text>
         {/* <Flex justify="space-around">
           <Flex.Item style={{ ...w80, ...center }}>

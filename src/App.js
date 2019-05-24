@@ -26,7 +26,7 @@ export default class App extends React.Component {
 
   backFn() {
     console.log('back')
-    return true
+    // return true
   }
 
   render() {
