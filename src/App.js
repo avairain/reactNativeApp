@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 import AppNavigator from './navigation/AppNavigator'
 import { homeActions } from './screens/actions'
 
-class App extends React.Component {
+export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
   }
@@ -33,11 +33,11 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log(this.props)
+    console.log(this.props)
     return (
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator {...this.props.homeActions} />
+        <AppNavigator />
       </View>
     );
   }
@@ -60,10 +60,11 @@ const styles = StyleSheet.create({
   },
 })
 
-export default connect(
+/* connect(
   state => {
+    console.log(state)
     return {
-      home: state.home.homeAction
+      homeState: state.homeState.home
     }
   },
   dispatch => {
@@ -71,4 +72,4 @@ export default connect(
       homeActions: bindActionCreators(homeActions, dispatch)
     }
   }
-)(App)
+)(App) */

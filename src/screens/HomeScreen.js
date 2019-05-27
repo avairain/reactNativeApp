@@ -21,6 +21,7 @@ class HomeScreen extends React.Component {
   };
 
   render() {
+    console.log(this.props)
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -193,8 +194,9 @@ const styles = StyleSheet.create({
 
 export default connect(
   state => {
+    console.log(state)
     return {
-      home: state.home.homeAction
+      homeState: state.homeState.homeAction
     }
   },
   dispatch => {
