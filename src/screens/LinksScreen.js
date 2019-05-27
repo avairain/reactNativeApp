@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text } from 'react-native';
-import ExmList from '../constants/LeftExmList'
+import ExmList from '../assets/constants/LeftExmList'
 // import { ExpoLinksView } from '@expo/samples';
 
 export default class LinksScreen extends React.Component {
