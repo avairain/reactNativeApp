@@ -8,10 +8,13 @@
 
 import React from 'react'
 import { Platform, StatusBar, StyleSheet, View, Text, BackHandler } from 'react-native'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 import AppNavigator from './navigation/AppNavigator'
+import { homeActions } from './screens/actions'
 
-export default class App extends React.Component {
+class App extends React.Component {
   state = {
     isLoadingComplete: false,
   }
@@ -30,10 +33,11 @@ export default class App extends React.Component {
   }
 
   render() {
+    // console.log(this.props)
     return (
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator />
+        <AppNavigator {...this.props.homeActions} />
       </View>
     );
   }
@@ -55,3 +59,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 })
+
+export default connect(
+  state => {
+    return {
+      home: state.home.homeAction
+    }
+  },
+  dispatch => {
+    return {
+      homeActions: bindActionCreators(homeActions, dispatch)
+    }
+  }
+)(App)

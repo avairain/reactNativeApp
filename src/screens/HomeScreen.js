@@ -9,9 +9,13 @@ import {
   View,
 } from 'react-native';
 
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { homeActions } from './actions'
+
 import { MonoText } from '../components/StyledText';
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
@@ -91,6 +95,7 @@ export default class HomeScreen extends React.Component {
   };
 
   _handleHelpPress = () => {
+    this.props.homeActions.loadHome()
     // WebBrowser.openBrowserAsync(
     //   'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
     // );
@@ -184,4 +189,17 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
-});
+})
+
+export default connect(
+  state => {
+    return {
+      home: state.home.homeAction
+    }
+  },
+  dispatch => {
+    return {
+      homeActions: bindActionCreators(homeActions, dispatch)
+    }
+  }
+)(HomeScreen)
