@@ -1,6 +1,14 @@
 /**
  * @format
  */
+
+ /**
+  * 
+  * 
+    "remote-redux-devtools": "^0.5.16",
+    "remotedev-rn-debugger": "^0.8.4",
+    "postinstall": "remotedev-debugger --hostname localhost --port 8081 --injectserver"
+  */
 import React, { Component } from 'react'
 import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux'
