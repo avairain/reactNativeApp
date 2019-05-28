@@ -18,14 +18,23 @@ export function loadHome() {
   };
 }
 
+export function showHome() {
+  return (dispatch, getState) => {
+    return dispatch({
+      type: 'SHOW_HOME'
+    })
+  }
+}
+
 export default function home(state = {}, action) {
   if (/^DELETE/i.test(action.type)) {
     return commonArticles('DELETE', state)(state, action)
   }
   switch (action.type) {
-    case 'SHOW_MODAL': {
+    case 'SHOW_HOME': {
       return {
         ...state,
+        img: (__DEV__) ? require('../assets/images/robot-dev.png') : require('../assets/images/robot-prod.png'),
         visible: true,
         error: false
       };

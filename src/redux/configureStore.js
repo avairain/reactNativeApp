@@ -7,7 +7,6 @@ import OwnMiddleware from './httpMiddleware'
 // import createFetchMiddleware from 'redux-composable-fetch';
 import devToolsEnhancer, { composeWithDevTools } from 'remote-redux-devtools';
 
-console.log(__DEV__)
 const composeEnhancers = composeWithDevTools({ realtime: true, port: 8000, hostname: 'localhost' });
 const _createStore = compose(
   applyMiddleware(ThunkMiddleware, OwnMiddleware),

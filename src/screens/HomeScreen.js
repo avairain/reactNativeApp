@@ -18,19 +18,21 @@ import { MonoText } from '../components/StyledText';
 class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
-  };
+  }
 
+  componentWillMount() {
+    this.props.homeActions.showHome()
+  }
   render() {
-    console.log(this.props)
+    const { error, img } = this.props.homeState
     return (
+      error ? (<View><Text onPress={() => this.pressError()} style={{color: '#f00'}}>error</Text></View>) :
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
             <Image
               source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
+                img
               }
               style={styles.welcomeImage}
             />
@@ -101,6 +103,10 @@ class HomeScreen extends React.Component {
     //   'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
     // );
   };
+
+  pressError() {
+    this.props.homeActions.showHome()
+  }
 }
 
 const styles = StyleSheet.create({
@@ -194,9 +200,8 @@ const styles = StyleSheet.create({
 
 export default connect(
   state => {
-    console.log(state)
     return {
-      homeState: state.homeState.homeAction
+      homeState: state.wrap.homeState
     }
   },
   dispatch => {

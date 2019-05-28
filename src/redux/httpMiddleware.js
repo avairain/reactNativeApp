@@ -20,7 +20,7 @@ export default function ({dispatch}) {
         })
         .catch(err => {
           console.log(err)
-          return Promise.reject(next({
+          return Promise.resolve(next({
             type: fail,
             loading: false,
             error: true

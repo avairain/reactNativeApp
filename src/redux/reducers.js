@@ -1,5 +1,5 @@
-import home from '../screens/actions'
+import wrap from '../screens/actions'
 
 export default {
-  homeState: home
+  wrap: wrap
 }
