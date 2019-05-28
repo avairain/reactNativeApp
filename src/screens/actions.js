@@ -21,6 +21,9 @@ export default combineReducers({
  * 当 connect(mapStateToProps, mapDispatchToProps) 中
  *  mapStateToProps 方法接受全部的 state 返回的对象是映射在 props 中的值
  *  mapDispatchToProps 方法接受 dispatch 返回的对象是映射在 props 中的值
+ * 
+ * 如字面意思
+ * redux 主要是管理 state component 的 state
  */
 
 export const homeActions = $Home
