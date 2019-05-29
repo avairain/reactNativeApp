@@ -16,6 +16,7 @@ import { Provider } from 'react-redux'
 import App from './src/App';
 import {name as appName} from './app.json';
 import createStore from './src/redux/configureStore'
+import { Provider as Pro } from '@ant-design/react-native';
 
 const store = createStore()
 
@@ -26,7 +27,9 @@ class C extends Component {
   render() {
     return (
       <Provider store={store}>
-        <App />
+        <Pro>
+          <App />
+        </Pro>
       </Provider>
     )
   }

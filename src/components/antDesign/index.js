@@ -32,7 +32,8 @@ export class AntDButton extends Component {
   }
 
   showToastNoMask() {
-    Toast.info('Toast without mask !!!')
+    console.log('Toast')
+    Toast.success('Toast without mask !!!', 1, null, false)
     // ToastAndroid.show('ToastAndroid', ToastAndroid.SHORT)
   }
 
@@ -41,7 +42,7 @@ export class AntDButton extends Component {
     const { pic, label } = this.state
     return (
         <View>
-          <Text onPress={() => this.showToastNoMask()}>Without mask</Text>
+          <Button onPress={() => this.showToastNoMask()}>Without mask</Button>
           <Button>ant Button</Button>
           <Image source={ pic } style={{width: 193, height: 110}} />
           <TouchableOpacity
@@ -67,7 +68,7 @@ export class AntDButton extends Component {
             <MyButton label={ label } />
           </TouchableOpacity>
           <Text>123</Text>      
-          <Ts></Ts>
+          {/* <Ts></Ts> */}
         </View>
     )
   }
