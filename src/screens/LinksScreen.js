@@ -45,7 +45,10 @@ import Title from '../components/common/BindTitle'
 //   }
 // }
 function LinksScreen(props) {
-  const goTo = v => props.navigation.push(v)
+  const goTo = v => {
+    console.log(v)
+    props.navigation.push(v)
+  }
   const list = props.linkState.list.map(v => <Text onPress={() => goTo(v)} key={v} style={styles.listStyle}>{v}</Text>)
   return (
     <ScrollView style={styles.container}>
@@ -59,13 +62,11 @@ LinksScreen.navigationOptions = {
 
 export default connect(
   state => {
-    console.log(state)
     return {
       linkState: state.wrap.linkState
     }
   },
   dispatch => {
-    console.log(linkActions)
     return {
       linkActions: bindActionCreators(linkActions, dispatch)
     }

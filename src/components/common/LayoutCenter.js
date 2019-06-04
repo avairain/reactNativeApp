@@ -16,7 +16,7 @@ export default (p) => (WrappedComponent) => class LayoutCenter extends Component
           </Flex.Item>
         </Flex> */}
         <View style={{ ...w80, ...center }}>
-          <WrappedComponent/>
+          <WrappedComponent {...this.props}/>
         </View>
       </View>
     )

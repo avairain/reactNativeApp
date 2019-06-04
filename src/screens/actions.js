@@ -3,11 +3,13 @@ import { combineReducers } from 'redux'
 import _home, * as $Home from './HomeScreenRedux'
 import _Link, * as $link from './LinksScreenRedux'
 import _Setting, * as $setting from './SettingsScreenRedux'
+import _AntDesign, * as $antDesign from '../components/antDesign/indexRedux'
 
 export default combineReducers({
   homeState: _home,
   linkState: _Link,
   settingState: _Setting,
+  antDesign: _AntDesign
 });
 
 /**
@@ -29,3 +31,4 @@ export default combineReducers({
 export const homeActions = $Home
 export const linkActions = $link
 export const settingActions = $setting
+export const antDesignActions = $antDesign

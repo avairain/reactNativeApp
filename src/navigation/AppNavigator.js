@@ -1,26 +1,20 @@
 import React from 'react';
 import { Text } from 'react-native'
-import { createAppContainer, createStackNavigator } from 'react-navigation'
+import { createAppContainer, createStackNavigator, createDrawerNavigator } from 'react-navigation'
 
+import { DrawerLayout, DrawerLayout1 } from '../components/LeftExmList/index'
 import MainTabNavigator from './MainTabNavigator';
-import { bindActionCreators } from 'redux';
-import { homeActions } from '../screens/actions'
-
-// let a =  class extends React.Component{
-//   render(){
-//     return <Text>123</Text>
-//   }
-// };
 
 export default createAppContainer(createStackNavigator({
   // You could add another route here for authentication.
   // Read more at https://reactnavigation.org/docs/en/auth-flow.html
   Main: MainTabNavigator,
-}));
-
-/* 
-function () {
-  return (
-    <Text>123</Text>
-  )
-} */
+  DrawerLayout: createDrawerNavigator({
+    Drawer: {
+      screen: DrawerLayout
+    },
+    Drawer1: {
+      screen: DrawerLayout1
+    }
+  })
+}))

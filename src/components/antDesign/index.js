@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Image, Platform, TouchableOpacity, Text, TextInput, ToastAndroid } from 'react-native'
 import { Button, Toast} from '@ant-design/react-native'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
 
 import LayoutCenter from '../common/LayoutCenter'
 import Ts from '../withTs/'
+import { antDesignActions } from '../../screens/actions'
 
 @LayoutCenter()
-export class AntDButton extends Component {
+class _AntDButton extends Component {
+  pic = {
+    uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+  }
   constructor() {
     super()
-    this.state = {
-      pic: {
-        uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-      },
-      label: 'Press me!'
-    }
   }
 
   _onPress () {
@@ -22,13 +22,12 @@ export class AntDButton extends Component {
   }
 
   pressLabel(v) {
-    this.setState({
-      label: v || 'has press'
-    })
+    this.props.changeLabel(v || '123')
   }
 
   clearText() {
-    this._textInput.setNativeProps({text: ''});
+    // this._textInput.setNativeProps({text: ''});
+    this.props.changeLabel('')
   }
 
   showToastNoMask() {
@@ -39,7 +38,8 @@ export class AntDButton extends Component {
 
   render() {
     // console.log(Platform.Version)
-    const { pic, label } = this.state
+    const { label } = this.props.antDesign
+    const pic = this.pic
     return (
         <View>
           <Button onPress={() => this.showToastNoMask()}>Without mask</Button>
@@ -61,13 +61,14 @@ export class AntDButton extends Component {
             <MyButton label={ label } />
           </TouchableOpacity>
           <TextInput
-            onChangeText={e => console.log(e)}
+            onChangeText={e => this.pressLabel(e)}
             ref={component => this._textInput = component}
             style={{ borderWidth: 1, borderColor: '#ccc' }} />
           <TouchableOpacity onPress={() => this.clearText()}>
             <MyButton label={ label } />
           </TouchableOpacity>
-          <Text>123</Text>      
+          <Text>123</Text>
+          <Button onPress={() => this.props.getList()}>getList</Button>
           {/* <Ts></Ts> */}
         </View>
     )
@@ -84,3 +85,16 @@ class MyButton extends React.Component {
     )
   }
 }
+
+export const AntDButton = connect(
+  state => {
+    return {
+      antDesign: { ...state.wrap.antDesign }
+    }
+  },
+  dispatch => {
+    return {
+      ...bindActionCreators(antDesignActions, dispatch)
+    }
+  }
+)(_AntDButton)

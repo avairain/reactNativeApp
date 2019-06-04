@@ -1,7 +1,12 @@
-import { Activity } from '../components/LeftExmList/'
-import { AntDButton } from '../components/antDesign'
+import * as Activity from '../components/LeftExmList/'
+import * as AntDButton from '../components/antDesign'
+
+console.log(Activity)
+
+const RouterOptions = { ...Activity, ...AntDButton }
+
+delete RouterOptions.DrawerLayout
 
 export default {
-  ActivityIndicator: Activity,
-  AntDButton: AntDButton
+  ...RouterOptions
 }

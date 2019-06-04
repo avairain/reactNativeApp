@@ -1,1 +1,1 @@
-export default ['ActivityIndicator', 'AntDButton']
+export default ['Activity', 'Btn', 'DrawerLayout', 'AntDButton']

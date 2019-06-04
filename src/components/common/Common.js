@@ -5,15 +5,21 @@ import { shouldComponentUpdate } from 'react-addons-pure-render-mixin'
 const o = Dimensions.get('window')
 console.log(o)
 
-export default () => WrappedComponent => class extends Component {
-  constructor() {
-    super()
-    WrappedComponent.shouldComponentUpdate = shouldComponentUpdate.bind(WrappedComponent)
+export default () => WrappedComponent => {
+  const config = Object.keys(WrappedComponent)
+  console.log(config)
+  class Common extends Component {
+    constructor() {
+      super()
+      WrappedComponent.shouldComponentUpdate = shouldComponentUpdate.bind(WrappedComponent)
+    }
+  
+    render() {
+      return <WrappedComponent { ...this.props } />
+    }
   }
-
-  render() {
-    return <WrappedComponent { ...this.props } />
-  }
+  config.forEach(v => Common[v] = WrappedComponent[v])
+  return Common
 }
 
 export const Toast = {
