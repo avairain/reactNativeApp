@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid } from 'react-native'
+import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL } from 'react-native'
+import { connect } from 'react-redux'
+
+import { leftExmListActions } from '../../screens/actions'
 import Common from '../common/Common'
+import { bindActionCreators } from 'redux';
 
 @Common()
 export class Activity extends Component {
@@ -102,6 +106,74 @@ export class DrawerLayout1 extends Component {
     )
   }
 }
+
+@Common()
+class _FlatList extends Component {
+  constructor() {
+    super()
+    this.renderItem = this.renderItem.bind(this)
+    this._keyExtractor = this._keyExtractor.bind(this)
+  }
+
+  componentDidMount() {
+    // console.log()
+    const timer = setTimeout(() => {
+      this.props.loadData.loadInfoSuccess()
+      clearTimeout(timer)
+    },3000)
+  }
+
+  _keyExtractor(item, index) {
+    // console.log(arguments)
+    // 唯一标识
+    return item.key
+  }
+
+  renderItem(T) {
+    // console.log(T)
+    // console.log(T.item)
+    // item render 函数
+    const { selected } = this.props
+    return (
+      <Text>{selected === T.item.key ? 'selected' : ''} {T.item.key}</Text>
+    )
+  }
+
+  render() {
+    const { list: infoList } = this.props
+    const _ItemSeparatorComponent = () => <Text>1</Text> // item 之间渲染的内容
+    const _ListEmptyComponent = () => <Text>empty</Text> // 空
+    const _ListFooterComponent = () => <Text>footer</Text> // 尾
+    const _ListHeaderComponent = () => <Text>header</Text> // 头
+    console.log(infoList)
+    return (
+      <View>
+        <FL
+          data={infoList}
+          renderItem={this.renderItem}
+          extraData={this.props}
+          ListEmptyComponent={_ListEmptyComponent}
+          ItemSeparatorComponent={_ItemSeparatorComponent}
+          ListHeaderComponent={_ListHeaderComponent}
+          ListFooterComponent={_ListFooterComponent}
+          keyExtractor={this._keyExtractor}></FL>
+      </View>
+    )
+  }
+}
+
+export const FlatList = connect(
+  state => {
+    return {
+      ...state.wrap.leftExmList
+    }
+  },
+  dispatch => {
+    return {
+      loadData: bindActionCreators(leftExmListActions, dispatch)
+    }
+  }
+)(_FlatList)
 
 const styles = StyleSheet.create({
   title: {
