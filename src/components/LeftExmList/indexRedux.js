@@ -1,12 +1,24 @@
 
-const _types = ['LOAD_FLATLIST_DATA', 'SUCCESS_FLATLIST_DATA', 'ERROR_FLATLIST_DATA']
+const _types = ['LOAD_FLATLIST_DATA', 'SUCCESS_FLATLIST_DATA', 'ERROR_FLATLIST_DATA', 'SHOW_MODAL', 'HIDDEN_MODAL', 'CHANGE_PICKER']
 
-const [LOAD, SUCCESS, ERROR] = _types
+const [LOAD, SUCCESS, ERROR, SHOW, HIDDEN, CHANGE] = _types
 
 const initState = {
   list: [],
   load: false,
-  error: false
+  error: false,
+  show: false,
+  pickerValue: '',
+  pickerList: [
+    {
+      label: 'Java',
+      value: 'java'
+    },
+    {
+      label: 'JavaScript',
+      value: 'js'
+    }
+  ]
 }
 
 function _loadInfo() {
@@ -45,20 +57,57 @@ export function loadInfoError() {
   }
 }
 
+function _showModal () {
+  return {
+    type: SHOW
+  }
+}
+
+export function showModal() {
+  return (dispatch) => {
+    return dispatch(_showModal())
+  }
+}
+
+function _hiddenModal () {
+  return {
+    type: HIDDEN
+  }
+}
+
+export function hiddenModal() {
+  return (dispatch) => {
+    return dispatch(_hiddenModal())
+  }
+}
+
+function _changePicker(v) {
+  return {
+    type: CHANGE,
+    text: v
+  }
+}
+
+export function changePicker(v) {
+  return (dispatch) => {
+    return dispatch(_changePicker(v))
+  }
+}
+
 // reducer
 export default function(state = initState, action) {
-  console.log(action)
   switch(action.type) {
     case LOAD:
       return {
         ...state,
+        // list: [],
         load: true,
         error: false,
       }
     case SUCCESS:
       return {
         ...state,
-        list: [{key: 'a'}, {key: 'b'}].reverse(),
+        list: [{key: 'a'}, {key: 'b'}, {key: 'c'}, {key: 'd'}].reverse(),
         selected: 'a',
         load: false,
         error: false,
@@ -68,6 +117,21 @@ export default function(state = initState, action) {
         ...state,
         load: false,
         error: true,
+      }
+    case SHOW:
+      return {
+        ...state,
+        show: true
+      }
+    case HIDDEN:
+      return {
+        ...state,
+        show: false
+      }
+    case CHANGE:
+      return {
+        ...state,
+        pickerValue: action.text
       }
     default:
       return {

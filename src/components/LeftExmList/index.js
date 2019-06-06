@@ -1,10 +1,15 @@
+/**
+ * 只看component 了解大概 详情需要去看配置
+ * https://reactnative.cn/docs/activityindicator/
+ */
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL, Image as IG, ImageBackground as IGB, KeyboardAvoidingView as KBAV, Modal as Md, Picker as PK } from 'react-native'
 import { connect } from 'react-redux'
 
 import { leftExmListActions } from '../../screens/actions'
 import Common from '../common/Common'
 import { bindActionCreators } from 'redux';
+import { Toast } from '@ant-design/react-native';
 
 @Common()
 export class Activity extends Component {
@@ -116,7 +121,8 @@ class _FlatList extends Component {
   }
 
   componentDidMount() {
-    // console.log()
+    console.log(this.props)
+    // this.props.loadData.loadInfo()
     const timer = setTimeout(() => {
       this.props.loadData.loadInfoSuccess()
       clearTimeout(timer)
@@ -130,12 +136,13 @@ class _FlatList extends Component {
   }
 
   renderItem(T) {
-    // console.log(T)
+    console.log(T)
     // console.log(T.item)
     // item render 函数
     const { selected } = this.props
+    console.log(this.props)
     return (
-      <Text>{selected === T.item.key ? 'selected' : ''} {T.item.key}</Text>
+      <Text style={this.props.style}>{selected === T.item.key ? 'selected' : ''} {T.item.key}</Text>
     )
   }
 
@@ -152,11 +159,14 @@ class _FlatList extends Component {
           data={infoList}
           renderItem={this.renderItem}
           extraData={this.props}
-          ListEmptyComponent={_ListEmptyComponent}
-          ItemSeparatorComponent={_ItemSeparatorComponent}
-          ListHeaderComponent={_ListHeaderComponent}
-          ListFooterComponent={_ListFooterComponent}
-          keyExtractor={this._keyExtractor}></FL>
+          ListEmptyComponent={_ListEmptyComponent /* 空 */}
+          ItemSeparatorComponent={_ItemSeparatorComponent /* item 之间渲染的内容 */}
+          ListHeaderComponent={_ListHeaderComponent /* 头 */}
+          ListFooterComponent={_ListFooterComponent /* 尾 */}
+          keyExtractor={this._keyExtractor /* 唯一标识 */}
+          horizontal={false /* 不是水平布局 */}
+          numColumns={2 /* 一行有多少列 horizontal=false */}
+          columnWrapperStyle={styles.fl /* 每一项的样式 */}></FL>
       </View>
     )
   }
@@ -175,8 +185,157 @@ export const FlatList = connect(
   }
 )(_FlatList)
 
+@Common()
+export class Image extends Component {
+  pic = {
+    uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+  }
+  render() {
+    const pic = this.pic
+    return (
+      <View>
+        <IG
+          style={{ width: '50%', height: '50%'}}
+          source={pic}></IG>
+      </View>
+    )
+  }
+}
+
+@Common()
+export class ImageBackground extends Component {
+  pic = {
+    uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+  }
+  render() {
+    const pic = this.pic
+    return (
+      <View>
+        <IGB
+          style={{ width: 300, height: 200}}
+          source={pic}>
+          <Text style={{ width: '50%', height: '50%'}}>ImageBackground</Text>
+        </IGB>
+      </View>
+    )
+  }
+}
+
+@Common()
+export class KeyboardAvoidingView extends Component {
+  render() {
+    return (
+      <View>
+        <KBAV>
+          <Text>TextInput</Text>
+          <TextInput style={styles.fl}></TextInput>
+        </KBAV>
+      </View>
+    )
+  }
+}
+
+@Common()
+class _Modal extends Component {
+  constructor() {
+    super()
+    this.closeModal = this.closeModal.bind(this)
+  }
+  closeModal() {
+    Toast.success('close modal', 1, null, false)
+    this.props.loadData.hiddenModal()
+  }
+
+  render() {
+    const { visible } = this.props
+    console.log(visible)
+    return (
+      <View>
+        <TouchableOpacity onPress={this.props.loadData.showModal}>
+          <Text> Open the Modal </Text>
+        </TouchableOpacity>
+        <Md
+          animationType="fade"
+          transparent={false}
+          onRequestClose={this.closeModal}
+          visible={visible}>
+          <View style={styles.flex}>
+             <Text onPress={this.props.loadData.hiddenModal}> text in modal</Text>
+          </View>
+        </Md>
+      </View>
+    )
+  }
+}
+
+export const Modal = connect(
+  state => {
+    return {
+      visible: state.wrap.leftExmList.show
+    }
+  },
+  dispatch => {
+    return {
+      loadData: bindActionCreators(leftExmListActions, dispatch)
+    }
+  }
+)(_Modal)
+
+@Common()
+class _Picker extends Component {
+  constructor() {
+    super()
+    this.valueChange = this.valueChange.bind(this)
+  }
+
+  valueChange(v) {
+    this.props.changeValue(v)
+  }
+
+  render() {
+    const { pickerValue: value, pickerList } = this.props
+    return (
+      <View>
+        <Text> packer </Text>
+        <PK
+          onValueChange={this.valueChange}
+          selectedValue={value}>
+          {pickerList.map(v => {
+            return (
+              <PK.Item label={v.label} value={v.value} key={v.value}></PK.Item>
+            )
+          })}
+        </PK>
+      </View>
+    )
+  }
+}
+
+export const Picker = connect(
+  state => {
+    return {
+      pickerValue: state.wrap.leftExmList.pickerValue,
+      pickerList: state.wrap.leftExmList.pickerList
+    }
+  },
+  dispatch => {
+    return {
+      changeValue: bindActionCreators(leftExmListActions.changePicker, dispatch)
+    }
+  }
+)(_Picker)
+
 const styles = StyleSheet.create({
   title: {
     textAlign: 'center'
+  },
+  fl: {
+    borderWidth: 1,
+    borderColor: 'red'
+  },
+  flex: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })

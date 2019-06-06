@@ -7,7 +7,6 @@ console.log(o)
 
 export default () => WrappedComponent => {
   const config = Object.keys(WrappedComponent)
-  console.log(config)
   class Common extends Component {
     constructor() {
       super()
