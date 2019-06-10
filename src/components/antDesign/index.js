@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Image, Platform, TouchableOpacity, Text, TextInput, ToastAndroid } from 'react-native'
+import { View, StyleSheet, ScrollView, Image, Platform, TouchableOpacity, Text, TextInput, ToastAndroid } from 'react-native'
 import { Button, Toast} from '@ant-design/react-native'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
@@ -98,3 +98,39 @@ export const AntDButton = connect(
     }
   }
 )(_AntDButton)
+
+function AntD (props) {
+  const goTo = v => {
+    console.log(v)
+    props.navigation.push(v)
+  }
+  const list = props.list.map(v => <Text onPress={() => goTo(v)} key={v} style={styles.listStyle}>{v}</Text>)
+  return (
+    <ScrollView style={styles.container}>
+     {list}
+    </ScrollView>
+  )
+}
+
+export default connect(
+  state => {
+    console.log(state)
+    return { 
+      list: state.wrap.antDesign.menuList
+    }
+  }
+)(AntD)
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // paddingTop: 15,
+    backgroundColor: '#fff',
+  },
+  listStyle: {
+    marginLeft: '10%',
+    marginTop: '10%',
+  }
+});
+

@@ -1,4 +1,7 @@
 
-export const Link = ['rn', 'antD']
+export const Link = ['Rn', 'AntD']
 
-export default ['Activity', 'Btn', 'DrawerLayout', 'FlatList', 'Image', 'ImageBackground', 'KeyboardAvoidingView', 'Modal', 'Picker', 'AntDButton']
+export const Rn = ['Activity', 'Btn', 'DrawerLayout', 'FlatList', 'Image', 'ImageBackground', 'KeyboardAvoidingView', 'Modal', 'Picker', 'ProgressBarAndroid']
+
+export const AntD = ['AntDButton']
+ 

@@ -1,7 +1,7 @@
-import list, { Link } from '../assets/constants/LeftExmList'
+import { Link } from '../assets/constants/LeftExmList'
 
 const initState = {
-  list: [ ...list ],
+  list: [ ...Link ],
   title: 'Links'
 }
 

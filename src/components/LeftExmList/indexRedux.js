@@ -1,3 +1,4 @@
+import { Rn } from '../../assets/constants/LeftExmList'
 
 const _types = ['LOAD_FLATLIST_DATA', 'SUCCESS_FLATLIST_DATA', 'ERROR_FLATLIST_DATA', 'SHOW_MODAL', 'HIDDEN_MODAL', 'CHANGE_PICKER']
 
@@ -18,7 +19,8 @@ const initState = {
       label: 'JavaScript',
       value: 'js'
     }
-  ]
+  ],
+  menuList: [ ...Rn ]
 }
 
 function _loadInfo() {

@@ -3,7 +3,7 @@
  * https://reactnative.cn/docs/activityindicator/
  */
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, TextInput, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL, Image as IG, ImageBackground as IGB, KeyboardAvoidingView as KBAV, Modal as Md, Picker as PK } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL, Image as IG, ImageBackground as IGB, KeyboardAvoidingView as KBAV, Modal as Md, Picker as PK, ProgressBarAndroid as PA } from 'react-native'
 import { connect } from 'react-redux'
 
 import { leftExmListActions } from '../../screens/actions'
@@ -325,6 +325,42 @@ export const Picker = connect(
   }
 )(_Picker)
 
+export class ProgressBarAndroid extends Component {
+  value = 50
+  render() {
+    return (
+      <View>
+        <PA
+          styleAttr="Horizontal"
+          animating={true}
+          progress={1}></PA>
+      </View>
+    )
+  }
+}
+
+function Rn (props) {
+  const goTo = v => {
+    console.log(v)
+    props.navigation.push(v)
+  }
+  const list = props.list.map(v => <Text onPress={() => goTo(v)} key={v} style={styles.listStyle}>{v}</Text>)
+  return (
+    <ScrollView style={styles.container}>
+     {list}
+    </ScrollView>
+  )
+}
+
+export default connect(
+  state => {
+    console.log(state)
+    return { 
+      list: state.wrap.leftExmList.menuList
+    }
+  }
+)(Rn)
+
 const styles = StyleSheet.create({
   title: {
     textAlign: 'center'
@@ -337,5 +373,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  container: {
+    flex: 1,
+    // paddingTop: 15,
+    backgroundColor: '#fff',
+  },
+  listStyle: {
+    marginLeft: '10%',
+    marginTop: '10%',
   }
 })

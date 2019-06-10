@@ -1,4 +1,5 @@
 import { getList as getListAPI } from '../../common/interface'
+import { AntD } from '../../assets/constants/LeftExmList'
 
 const types = ['LOADING_GET_LIST', 'SUCCESS_GET_LIST', 'ERROR_GET_LIST', 'GET_LIST', 'CHANGE_LABEL']
 const [LOADING, SUCCESS, ERROR, GET, CHANGELABEL] = types
@@ -6,7 +7,8 @@ const initState = {
   loading: false,
   error: false,
   infoList: [],
-  label: 'Press Me!'
+  label: 'Press Me!',
+  menuList: [...AntD]
 }
 // actions
 function getListAction(id) {
