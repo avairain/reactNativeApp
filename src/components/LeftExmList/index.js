@@ -3,7 +3,7 @@
  * https://reactnative.cn/docs/activityindicator/
  */
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL, Image as IG, ImageBackground as IGB, KeyboardAvoidingView as KBAV, Modal as Md, Picker as PK, ProgressBarAndroid as PA } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL, Image as IG, ImageBackground as IGB, KeyboardAvoidingView as KBAV, Modal as Md, Picker as PK, ProgressBarAndroid as PA, RefreshControl as RC, SectionList as SL, Slider as Sl, StatusBar as SB, Switch as Sw, ToolbarAndroid as TA } from 'react-native'
 import { connect } from 'react-redux'
 
 import { leftExmListActions } from '../../screens/actions'
@@ -325,6 +325,7 @@ export const Picker = connect(
   }
 )(_Picker)
 
+@Common()
 export class ProgressBarAndroid extends Component {
   value = 50
   render() {
@@ -360,6 +361,146 @@ export default connect(
     }
   }
 )(Rn)
+
+@Common()
+class _RefreshControl extends Component {
+  constructor() {
+    super()
+    this._changeRefreshing = this._changeRefreshing.bind(this)
+  }
+  timer = null
+  _changeRefreshing() {
+    this.props.changeRefreshing()
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      clearTimeout(this.timer)
+      this.props.changeRefreshingSuccess()
+    }, 1500)
+  }
+  renderItem(arr = []) {
+    return arr.map(v => <Text key={v}>renderItem:{v}</Text>)
+  }
+  render() {
+    console.log(this)
+    const { refreshing, menuList } = this.props
+    return (
+      <ScrollView
+        refreshControl={
+          <RC
+          refreshing={refreshing}
+          onRefresh={this._changeRefreshing}></RC>
+        }
+      >
+        {this.renderItem(menuList)}
+        <Text>RefreshControl</Text>
+      </ScrollView>
+    )
+  }
+}
+
+export const RefreshControl = connect(
+  state => {
+    return {
+      refreshing: state.wrap.leftExmList.refreshing,
+      menuList: state.wrap.leftExmList.list
+    }
+  },
+  dispatch => {
+    return {
+      changeRefreshing: bindActionCreators(leftExmListActions.changeRefreshing, dispatch),
+      changeRefreshingSuccess: bindActionCreators(leftExmListActions.changeRefreshingSuccess, dispatch)
+    }
+  }
+)(_RefreshControl)
+
+@Common()
+class _SectionList extends Component {
+  constructor() {
+    super()
+    this._renderItem = this._renderItem.bind(this)
+  }
+  _renderItem({ item, index, section }) {
+    console.log(arguments)
+    return (
+      <Text key={index}>{section.type === 'title' && 'title ===>'} {item}</Text>
+    )
+  }
+  render() {
+    console.log(this.props)
+    const { list } = this.props
+    return (
+      <View>
+        <SL
+          sections={list}
+          keyExtractor={(v, i) => i.toString()}
+          renderItem={this._renderItem}></SL>
+      </View>
+    )
+  }
+}
+
+export const SectionList = connect(
+  state => ({
+    list: state.wrap.leftExmList.sectionList
+  })
+)(_SectionList)
+
+// removed
+/* @Common()
+export class Slider extends Component {
+  render() {
+    return (
+      <View>
+        <Sl />
+      </View>
+    )
+  }
+} */
+
+// 顶部通知栏
+@Common()
+export class StatusBar extends Component {
+  render() {
+    return (
+      <View>
+        <Text>StatusBar</Text>
+        <SB
+          hidden={true}>
+        </SB>
+      </View>
+    )
+  }
+}
+
+@Common()
+export class Switch extends Component {
+  render() {
+    return (
+      <View>
+        <Sw
+          value={true}></Sw>
+      </View>
+    )
+  }
+}
+
+@Common()
+export class ToolbarAndroid extends Component {
+  render() {
+    return (
+      <View>
+        <Text>ToolbarAndroid</Text>
+        <TA
+          title="ToolbarAndroid"
+          actions={[{title: 'Settings', icon: require('../../assets/images/splash.png'), show: 'always'}]}>
+          <Text>child1</Text>
+          <Text>child2</Text>
+          <Text>child3</Text>
+          </TA>
+      </View>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   title: {

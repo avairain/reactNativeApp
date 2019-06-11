@@ -1,8 +1,8 @@
 import { Rn } from '../../assets/constants/LeftExmList'
 
-const _types = ['LOAD_FLATLIST_DATA', 'SUCCESS_FLATLIST_DATA', 'ERROR_FLATLIST_DATA', 'SHOW_MODAL', 'HIDDEN_MODAL', 'CHANGE_PICKER']
+const _types = ['LOAD_FLATLIST_DATA', 'SUCCESS_FLATLIST_DATA', 'ERROR_FLATLIST_DATA', 'SHOW_MODAL', 'HIDDEN_MODAL', 'CHANGE_PICKER', 'CHANGE_REFRESHING', 'CHANGE_REFRESHING_SUCCESS']
 
-const [LOAD, SUCCESS, ERROR, SHOW, HIDDEN, CHANGE] = _types
+const [LOAD, SUCCESS, ERROR, SHOW, HIDDEN, CHANGE, CHANGE_REFRESHING, CHANGE_REFRESHING_SUCCESS] = _types
 
 const initState = {
   list: [],
@@ -20,7 +20,13 @@ const initState = {
       value: 'js'
     }
   ],
-  menuList: [ ...Rn ]
+  menuList: [ ...Rn ],
+  refreshing: false,
+  sectionList: [
+    { title: "Title1", data: ["item1", "item2"], type: 'title' },
+    { title: "Title2", data: ["item3", "item4"] },
+    { title: "Title3", data: ["item5", "item6"] }
+  ]
 }
 
 function _loadInfo() {
@@ -96,6 +102,26 @@ export function changePicker(v) {
   }
 }
 
+function _changeRefreshing(v) {
+  return {
+    type: CHANGE_REFRESHING
+  }
+}
+
+export function changeRefreshing(v) {
+  return (dispatch) => dispatch(_changeRefreshing(v))
+}
+
+function _changeRefreshingSuccess(v) {
+  return {
+    type: CHANGE_REFRESHING_SUCCESS
+  }
+}
+
+export function changeRefreshingSuccess(v) {
+  return (dispatch) => dispatch(_changeRefreshingSuccess(v))
+}
+
 // reducer
 export default function(state = initState, action) {
   switch(action.type) {
@@ -134,6 +160,17 @@ export default function(state = initState, action) {
       return {
         ...state,
         pickerValue: action.text
+      }
+    case CHANGE_REFRESHING:
+      return {
+        ...state,
+        refreshing: !state.refreshing
+      }
+    case CHANGE_REFRESHING_SUCCESS:
+      return {
+        ...state,
+        refreshing: !state.refreshing,
+        list: state.menuList.reverse()
       }
     default:
       return {
