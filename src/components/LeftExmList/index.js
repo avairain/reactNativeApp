@@ -3,8 +3,9 @@
  * https://reactnative.cn/docs/activityindicator/
  */
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL, Image as IG, ImageBackground as IGB, KeyboardAvoidingView as KBAV, Modal as Md, Picker as PK, ProgressBarAndroid as PA, RefreshControl as RC, SectionList as SL, Slider as Sl, StatusBar as SB, Switch as Sw, ToolbarAndroid as TA, TouchableNativeFeedback as TNF, TouchableWithoutFeedback as TWF } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL, Image as IG, ImageBackground as IGB, KeyboardAvoidingView as KBAV, Modal as Md, Picker as PK, ProgressBarAndroid as PA, RefreshControl as RC, SectionList as SL, StatusBar as SB, Switch as Sw, ToolbarAndroid as TA, TouchableNativeFeedback as TNF, TouchableWithoutFeedback as TWF } from 'react-native'
 import VPA from '@react-native-community/viewpager'
+import Sl from '@react-native-community/slider'
 import { connect } from 'react-redux'
 
 import { leftExmListActions } from '../../screens/actions'
@@ -446,8 +447,7 @@ export const SectionList = connect(
   })
 )(_SectionList)
 
-// removed
-/* @Common()
+@Common()
 export class Slider extends Component {
   render() {
     return (
@@ -456,7 +456,7 @@ export class Slider extends Component {
       </View>
     )
   }
-} */
+}
 
 // 顶部通知栏
 @Common()
