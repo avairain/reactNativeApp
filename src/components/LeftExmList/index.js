@@ -3,9 +3,10 @@
  * https://reactnative.cn/docs/activityindicator/
  */
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL, Image as IG, ImageBackground as IGB, KeyboardAvoidingView as KBAV, Modal as Md, Picker as PK, ProgressBarAndroid as PA, RefreshControl as RC, SectionList as SL, StatusBar as SB, Switch as Sw, ToolbarAndroid as TA, TouchableNativeFeedback as TNF, TouchableWithoutFeedback as TWF } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL, Image as IG, ImageBackground as IGB, KeyboardAvoidingView as KBAV, Modal as Md, Picker as PK, ProgressBarAndroid as PA, RefreshControl as RC, SectionList as SL, StatusBar as SB, Switch as Sw, ToolbarAndroid as TA, TouchableNativeFeedback as TNF, TouchableWithoutFeedback as TWF, VirtualizedList as VL } from 'react-native'
 import VPA from '@react-native-community/viewpager'
 import Sl from '@react-native-community/slider'
+import { WebView as WV } from 'react-native-webview'
 import { connect } from 'react-redux'
 
 import { leftExmListActions } from '../../screens/actions'
@@ -342,28 +343,6 @@ export class ProgressBarAndroid extends Component {
   }
 }
 
-function Rn (props) {
-  const goTo = v => {
-    console.log(v)
-    props.navigation.push(v)
-  }
-  const list = props.list.map(v => <Text onPress={() => goTo(v)} key={v} style={styles.listStyle}>{v}</Text>)
-  return (
-    <ScrollView style={styles.container}>
-     {list}
-    </ScrollView>
-  )
-}
-
-export default connect(
-  state => {
-    console.log(state)
-    return { 
-      list: state.wrap.leftExmList.menuList
-    }
-  }
-)(Rn)
-
 @Common()
 class _RefreshControl extends Component {
   constructor() {
@@ -549,7 +528,6 @@ export class TouchableWithoutFeedback extends Component {
 @Common()
 export class ViewPagerAndroid extends Component {
   render() {
-    console.log(123)
     return (
       <VPA
         style={styles.container}
@@ -564,6 +542,77 @@ export class ViewPagerAndroid extends Component {
     )
   }
 }
+
+@Common()
+class _VirtualizedList extends Component {
+  constructor() {
+    super()
+    this._renderItem = this._renderItem.bind(this)
+    this._getItem = this._getItem.bind(this)
+  }
+  _renderItem({ item }) {
+    return (
+      <View>
+        <Text>{item.data}</Text>
+      </View>
+    )
+  }
+  _getItem(t, index) {
+    return {data: t[index]}
+  }
+  render() {
+    const { list } = this.props
+    return (
+      <VL
+        data={list}
+        getItem={this._getItem}
+        renderItem={this._renderItem}
+        keyExtractor={(v, i) => i.toString()}
+        getItemCount={(v) => v.length}></VL>
+    )
+  }
+}
+
+export const VirtualizedList = connect(
+  state => ({
+    list: state.wrap.leftExmList.menuList
+  })
+)(_VirtualizedList)
+
+@Common()
+export class WebView extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>WebView</Text>
+        <WV
+          source={{uri: 'https://www.baidu.com'}}></WV>
+      </View>
+    )
+  }
+}
+
+function Rn (props) {
+  const goTo = v => {
+    console.log(v)
+    props.navigation.push(v)
+  }
+  const list = props.list.map(v => <Text onPress={() => goTo(v)} key={v} style={styles.listStyle}>{v}</Text>)
+  return (
+    <ScrollView style={styles.container}>
+     {list}
+    </ScrollView>
+  )
+}
+
+export default connect(
+  state => {
+    console.log(state)
+    return { 
+      list: state.wrap.leftExmList.menuList
+    }
+  }
+)(Rn)
 
 const styles = StyleSheet.create({
   title: {

@@ -5,6 +5,7 @@ import _Link, * as $link from './LinksScreenRedux'
 import _Setting, * as $setting from './SettingsScreenRedux'
 import _AntDesign, * as $antDesign from '../components/antDesign/indexRedux'
 import _LeftExmList, * as $leftExmList from '../components/LeftExmList/indexRedux'
+import _Api, * as $api from '../components/LeftExmList/apiRedux'
 
 export default combineReducers({
   homeState: _home,
@@ -12,6 +13,7 @@ export default combineReducers({
   settingState: _Setting,
   antDesign: _AntDesign,
   leftExmList: _LeftExmList,
+  api: _Api,
 });
 
 /**
@@ -35,3 +37,4 @@ export const linkActions = $link
 export const settingActions = $setting
 export const antDesignActions = $antDesign
 export const leftExmListActions = $leftExmList
+export const apiActions = $api

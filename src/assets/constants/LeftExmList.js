@@ -1,7 +1,9 @@
 
-export const Link = ['Rn', 'AntD']
+export const Link = ['Rn', 'AntD', 'RnApi']
 
-export const Rn = ['Activity', 'Btn', 'DrawerLayout', 'FlatList', 'Image', 'ImageBackground', 'KeyboardAvoidingView', 'Modal', 'Picker', 'ProgressBarAndroid', 'RefreshControl', 'SectionList', 'Slider', 'StatusBar', 'Switch', 'ToolbarAndroid', 'TouchableNativeFeedback', 'TouchableWithoutFeedback', 'ViewPagerAndroid']
+export const Rn = ['Activity', 'Btn', 'DrawerLayout', 'FlatList', 'Image', 'ImageBackground', 'KeyboardAvoidingView', 'Modal', 'Picker', 'ProgressBarAndroid', 'RefreshControl', 'SectionList', 'Slider', 'StatusBar', 'Switch', 'ToolbarAndroid', 'TouchableNativeFeedback', 'TouchableWithoutFeedback', 'ViewPagerAndroid', 'VirtualizedList', 'WebView']
+
+export const RnApi = ['AccessibilityInfo']
 
 export const AntD = ['AntDButton']
  
