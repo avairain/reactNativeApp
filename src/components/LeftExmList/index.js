@@ -3,7 +3,8 @@
  * https://reactnative.cn/docs/activityindicator/
  */
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL, Image as IG, ImageBackground as IGB, KeyboardAvoidingView as KBAV, Modal as Md, Picker as PK, ProgressBarAndroid as PA, RefreshControl as RC, SectionList as SL, Slider as Sl, StatusBar as SB, Switch as Sw, ToolbarAndroid as TA } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL, Image as IG, ImageBackground as IGB, KeyboardAvoidingView as KBAV, Modal as Md, Picker as PK, ProgressBarAndroid as PA, RefreshControl as RC, SectionList as SL, Slider as Sl, StatusBar as SB, Switch as Sw, ToolbarAndroid as TA, TouchableNativeFeedback as TNF, TouchableWithoutFeedback as TWF } from 'react-native'
+import VPA from '@react-native-community/viewpager'
 import { connect } from 'react-redux'
 
 import { leftExmListActions } from '../../screens/actions'
@@ -484,20 +485,82 @@ export class Switch extends Component {
   }
 }
 
+// 工具栏
 @Common()
 export class ToolbarAndroid extends Component {
+  TAActions = [
+    {title: 'Create', icon: require('../../assets/images/robot-dev.png'), show: 'always'},
+    {title: 'Filter'},
+    {title: 'Settings', icon: require('../../assets/images/robot-prod.png'), show: 'always'}
+  ]
+  constructor() {
+    super()
+    this._actionSelect = this._actionSelect.bind(this)
+  }
+  _actionSelect(actionIndex) {
+    console.log(arguments)
+  }
   render() {
     return (
       <View>
         <Text>ToolbarAndroid</Text>
         <TA
           title="ToolbarAndroid"
-          actions={[{title: 'Settings', icon: require('../../assets/images/splash.png'), show: 'always'}]}>
-          <Text>child1</Text>
-          <Text>child2</Text>
-          <Text>child3</Text>
+          onActionSelected={this._actionSelect}
+          actions={this.TAActions}
+          style={styles.toolbar}
+          subtitle="副标题"
+          title="主标题">
           </TA>
       </View>
+    )
+  }
+}
+
+@Common()
+export class TouchableNativeFeedback extends Component {
+  render() {
+    return (
+      <View>
+        <TNF>
+          <View style={{width: 150, height: 100, backgroundColor: 'red'}}>
+            <Text>TouchableNativeFeedback</Text>
+          </View>
+        </TNF>
+      </View>
+    )
+  }
+}
+
+@Common()
+export class TouchableWithoutFeedback extends Component {
+  render() {
+    return (
+      <View>
+        <Text>TouchableWithoutFeedback</Text>
+        <TWF onPress={() => console.log(1)}>
+          <View style={{width: 150, height: 100, backgroundColor: 'red'}}></View>
+        </TWF>
+      </View>
+    )
+  }
+}
+
+@Common()
+export class ViewPagerAndroid extends Component {
+  render() {
+    console.log(123)
+    return (
+      <VPA
+        style={styles.container}
+        initialPage={0}>
+        <View key="1">
+          <Text>First page</Text>
+        </View>
+        <View key="2">
+          <Text>Second page</Text>
+        </View>
+      </VPA>
     )
   }
 }
@@ -523,5 +586,9 @@ const styles = StyleSheet.create({
   listStyle: {
     marginLeft: '10%',
     marginTop: '10%',
+  },
+  toolbar: {
+    backgroundColor: '#f00',
+    height: 56,
   }
 })
