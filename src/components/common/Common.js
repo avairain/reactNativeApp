@@ -57,6 +57,9 @@ export class OwnAnimated extends Component {
       ).start();
     }, 2000)
   }
+  conponentWillUpdate() {
+    console.log(this.state.v)
+  }
   render() {
     return (
       <Animated.View                 // 使用专门的可动画化的View组件

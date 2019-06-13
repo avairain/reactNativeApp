@@ -69,7 +69,7 @@ class _AntDButton extends Component {
           </TouchableOpacity>
           <Text>123</Text>
           <Button onPress={() => this.props.getList()}>getList</Button>
-          {/* <Ts></Ts> */}
+          <Ts></Ts>
         </View>
     )
   }
