@@ -3,6 +3,8 @@ package com.myapp1;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.reactnativecommunity.slider.ReactSliderPackage;
 import com.reactnativecommunity.viewpager.RNCViewPagerPackage;
@@ -27,6 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new AsyncStoragePackage(),
+            new ReactNativePushNotificationPackage(),
             new RNCWebViewPackage(),
             new ReactSliderPackage(),
           new RNCViewPagerPackage(),

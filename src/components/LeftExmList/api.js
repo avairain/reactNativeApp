@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, AppRegistry, AccessibilityInfo as AlI, Alert as A, Animated as An, AppState as AS } from 'react-native'
+import { View, Text, StyleSheet, TextInput, AppRegistry, AccessibilityInfo as AlI, Alert as A, Animated as An, AppState as AS } from 'react-native'
+import PushNotification from 'react-native-push-notification'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { apiActions } from '../../screens/actions'
@@ -164,7 +165,6 @@ export class AppState extends Component {
   _changeAppState() {
     console.log(1)
     console.log(AS)
-    AppRegistry.registerHeadlessTask
   }
   render() {
     return (
@@ -175,7 +175,71 @@ export class AppState extends Component {
   }
 }
 
+@Common()
+export class Notification extends Component {
+  timer = null
+  componentDidMount() {
+    // AppRegistry.registerHeadlessTask()
+    clearInterval(this.timer)
+    this.timer = setInterval(() => {
+      PushNotification.localNotification({
+        bigText: 'bigText',
+        subText: 'subText',
+        title: 'title',
+        message: 'message'
+      })
+      clearInterval(this.timer)
+    }, 3000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
+  render() {
+    return (
+      <View>
+        <Text>PushNotification</Text>
+      </View>
+    )
+  }
+}
+
+@Common()
+class _AsyncStorage extends Component {
+  constructor() {
+    super()
+    this._changeValue = this._changeValue.bind(this)
+  }
+  _changeValue(v) {
+    this.props.changeAsyncStorage(v)
+  }
+  render() {
+    const { value } = this.props
+    return (
+      <View>
+        <Text>AsyncStorage</Text>
+        <TextInput
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          onChangeText={this._changeValue} />
+          <Text>{ value }</Text>
+      </View>
+    )
+  }
+}
+
+export const AsyncStorage = connect(
+  state => {
+    console.log(state)
+    return {
+      value: state.wrap.api.asyncStorageValue
+    }
+  },
+  dispatch => ({
+    changeAsyncStorage: bindActionCreators(apiActions.changeAsyncStorage, dispatch)
+  })
+)(_AsyncStorage)
+
 function RnApi({ list, navigation }) {
+  console.log(list)
   const goTo = (v) => {
     console.log(v)
     navigation.push(v)

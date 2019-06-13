@@ -231,7 +231,7 @@ export class KeyboardAvoidingView extends Component {
       <View>
         <KBAV>
           <Text>TextInput</Text>
-          <TextInput style={styles.fl}></TextInput>
+          <TextInput style={styles.fl}/>
         </KBAV>
       </View>
     )
