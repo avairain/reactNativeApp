@@ -26,7 +26,7 @@ function changeLabelAction(label) {
 }
 
 export function changeLabel(label) {
-  console.log(label)
+  // console.log(label)
   return (dispatch, getstate) => dispatch(changeLabelAction(label))
 }
 
@@ -55,7 +55,7 @@ export default function (state = initState, action) {
         error: true
       }
     case GET:
-      console.log(action)
+      // console.log(action)
       if(action.payload.status === 200) {
         const { data } = action.payload
         if(data.status === '0000') {
@@ -70,7 +70,6 @@ export default function (state = initState, action) {
           }
         }
       } else {
-        console.log('!success')
         return {
           ...state,
           infoList: [],
@@ -78,7 +77,6 @@ export default function (state = initState, action) {
         }
       }
     case CHANGELABEL:
-      console.log(state, action)
       return {
         ...state,
         label: action.label

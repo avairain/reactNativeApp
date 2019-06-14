@@ -13,3 +13,4 @@ declare const Common: () => (WrappedComponent: HOC) => HOC
 export default Common
 
 export class OwnAnimated extends Component {}
+export class GetPA extends Component {}

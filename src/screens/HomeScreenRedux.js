@@ -12,7 +12,6 @@ function ADD_ARTICLES (params) {
 
 export function loadHome() {
   return (dispatch, getState) => {
-    console.log(getState())
     const { title, desc, date } = getState();
     return dispatch(ADD_ARTICLES({ title, desc, date }));
   };

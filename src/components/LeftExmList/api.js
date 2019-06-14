@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, AppRegistry, AccessibilityInfo as AlI, Alert as A, Animated as An, AppState as AS } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button, ScrollView, AppRegistry, AccessibilityInfo as AlI, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA } from 'react-native'
 import PushNotification from 'react-native-push-notification'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { apiActions } from '../../screens/actions'
 
 import Common from '../common/Common'
+import { GetPA } from '../common/Common'
 
 /*
   // 辅助视障人士 
@@ -81,9 +82,9 @@ export class Alert extends Component {
   _alert() {
     A.alert('title', 'message',
       [
-        {text: 'button1', onPress: () => console.log('btn1')},
-        {text: 'button2', onPress: () => console.log('btn2')},
-        {text: 'button3', onPress: () => console.log('btn3')}
+        {text: 'button1', onPress: () => 'btn1'},
+        {text: 'button2', onPress: () => 'btn2'},
+        {text: 'button3', onPress: () => 'btn3'}
       ],
       { cancelable: false }
     )
@@ -104,9 +105,7 @@ class _Animated extends Component {
     this.props.setANValue(new An.Value(0))
   }
   componentWillReceiveProps(newProps) {
-    console.log(newProps.value)
     const v = newProps.value
-    console.log(v instanceof An.Value)
     if (v instanceof An.Value) {
       An.timing(
         v,
@@ -119,7 +118,6 @@ class _Animated extends Component {
     }
   }
   componentDidMount() {
-    console.log(this)
     // An.timing(
     //   this.props.value,
     //   {
@@ -163,8 +161,6 @@ export class AppState extends Component {
     AS.removeEventListener('change', this._changeAppState)
   }
   _changeAppState() {
-    console.log(1)
-    console.log(AS)
   }
   render() {
     return (
@@ -209,6 +205,9 @@ class _AsyncStorage extends Component {
     super()
     this._changeValue = this._changeValue.bind(this)
   }
+  componentDidMount() {
+    this.props.changeAsyncStorage()
+  }
   _changeValue(v) {
     this.props.changeAsyncStorage(v)
   }
@@ -219,7 +218,8 @@ class _AsyncStorage extends Component {
         <Text>AsyncStorage</Text>
         <TextInput
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={this._changeValue} />
+          onChangeText={this._changeValue}
+          value={value}/>
           <Text>{ value }</Text>
       </View>
     )
@@ -228,7 +228,6 @@ class _AsyncStorage extends Component {
 
 export const AsyncStorage = connect(
   state => {
-    console.log(state)
     return {
       value: state.wrap.api.asyncStorageValue
     }
@@ -238,10 +237,78 @@ export const AsyncStorage = connect(
   })
 )(_AsyncStorage)
 
+@GetPA()
+@Common()
+class _CameraRoll extends Component {
+  constructor() {
+    super()
+    this._getCameraRoll = this._getCameraRoll.bind(this)
+    this._chenckPA = this._chenckPA.bind(this)
+  }
+  async _chenckPA() {
+    // console.log(PA.PERMISSIONS.READ_EXTERNAL_STORAGE)
+    // console.log(PA.RESULTS.GRANTED)
+    const canRead  = await PA.check(PA.PERMISSIONS.READ_EXTERNAL_STORAGE)
+    // console.log(canRead)
+    if (!canRead) {
+      const result = await this.props.getPA(PA.PERMISSIONS.READ_EXTERNAL_STORAGE, '相册权限', '申请相册权限')
+      console.log(result)
+    }
+  }
+  _getCameraRoll() {
+    console.log('loading')
+    this._chenckPA()
+    // CR.getPhotos({
+    //   first: 5,
+    //   // groupTypes: 'All',
+    //   assetType: 'Photos'
+    // })
+    // .then(data => {
+    //   // console.log(data)
+    //   this.props.changeImgList(data.edges)
+    // })
+    // .catch(err => {
+    //   throw err
+    // })
+  }
+  render() {
+    return (
+      <View>
+        <Text>CameraRoll</Text>
+        <Button
+          onPress={this._getCameraRoll}
+          title="press me!"></Button>
+          <ScrollView>
+            {this.props.list.map((p, i) => {
+             return (
+               <Image
+                 key={i}
+                 style={{
+                   width: 300,
+                   height: 100,
+                 }}
+                 source={{ uri: p.node.image.uri }}
+               />
+             );
+           })}
+         </ScrollView>
+      </View>
+    )
+  }
+}
+
+export const CameraRoll = connect(
+  state => ({
+    list: state.wrap.api.imgList
+  }),
+  dispatch => ({
+    changeImgList: bindActionCreators(apiActions.changeImgList, dispatch)
+  })
+)(_CameraRoll)
+
 function RnApi({ list, navigation }) {
-  console.log(list)
   const goTo = (v) => {
-    console.log(v)
+    // console.log(v)
     navigation.push(v)
   }
   return (

@@ -66,7 +66,6 @@ export class DrawerLayout extends Component {
     return (
       <View>
         <TouchableOpacity onPress={() =>  {
-          console.log(this.props)
           this.props.navigation.push('Drawer')
           // this.props.navigation.openDrawer()
         }}><Text>DrawerLayoutAndroid</Text></TouchableOpacity>
@@ -100,7 +99,6 @@ export class DrawerLayout1 extends Component {
     return (
       <View>
         <TouchableOpacity onPress={() =>  {
-          console.log(this.props)
           this.props.navigation.push('Drawer')
           // this.props.navigation.openDrawer()
         }}><Text>DrawerLayoutAndroid1</Text></TouchableOpacity>
@@ -124,7 +122,6 @@ class _FlatList extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
     // this.props.loadData.loadInfo()
     const timer = setTimeout(() => {
       this.props.loadData.loadInfoSuccess()
@@ -139,11 +136,9 @@ class _FlatList extends Component {
   }
 
   renderItem(T) {
-    console.log(T)
     // console.log(T.item)
     // item render 函数
     const { selected } = this.props
-    console.log(this.props)
     return (
       <Text style={this.props.style}>{selected === T.item.key ? 'selected' : ''} {T.item.key}</Text>
     )
@@ -155,7 +150,6 @@ class _FlatList extends Component {
     const _ListEmptyComponent = () => <Text>empty</Text> // 空
     const _ListFooterComponent = () => <Text>footer</Text> // 尾
     const _ListHeaderComponent = () => <Text>header</Text> // 头
-    console.log(infoList)
     return (
       <View>
         <FL
@@ -251,7 +245,6 @@ class _Modal extends Component {
 
   render() {
     const { visible } = this.props
-    console.log(visible)
     return (
       <View>
         <TouchableOpacity onPress={this.props.loadData.showModal}>
@@ -362,7 +355,6 @@ class _RefreshControl extends Component {
     return arr.map(v => <Text key={v}>renderItem:{v}</Text>)
   }
   render() {
-    console.log(this)
     const { refreshing, menuList } = this.props
     return (
       <ScrollView
@@ -401,13 +393,11 @@ class _SectionList extends Component {
     this._renderItem = this._renderItem.bind(this)
   }
   _renderItem({ item, index, section }) {
-    console.log(arguments)
     return (
       <Text key={index}>{section.type === 'title' && 'title ===>'} {item}</Text>
     )
   }
   render() {
-    console.log(this.props)
     const { list } = this.props
     return (
       <View>
@@ -477,7 +467,6 @@ export class ToolbarAndroid extends Component {
     this._actionSelect = this._actionSelect.bind(this)
   }
   _actionSelect(actionIndex) {
-    console.log(arguments)
   }
   render() {
     return (
@@ -517,7 +506,7 @@ export class TouchableWithoutFeedback extends Component {
     return (
       <View>
         <Text>TouchableWithoutFeedback</Text>
-        <TWF onPress={() => console.log(1)}>
+        <TWF onPress={() => 1}>
           <View style={{width: 150, height: 100, backgroundColor: 'red'}}></View>
         </TWF>
       </View>
@@ -594,7 +583,6 @@ export class WebView extends Component {
 
 function Rn (props) {
   const goTo = v => {
-    console.log(v)
     props.navigation.push(v)
   }
   const list = props.list.map(v => <Text onPress={() => goTo(v)} key={v} style={styles.listStyle}>{v}</Text>)
@@ -607,7 +595,6 @@ function Rn (props) {
 
 export default connect(
   state => {
-    console.log(state)
     return { 
       list: state.wrap.leftExmList.menuList
     }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { ToastAndroid, Animated, Text, StyleSheet, Dimensions } from 'react-native'
+import { ToastAndroid, Animated, Text, StyleSheet, Dimensions, PermissionsAndroid } from 'react-native'
 import { shouldComponentUpdate } from 'react-addons-pure-render-mixin'
 
 const o = Dimensions.get('window')
-console.log(o)
+// console.log(o)
 
 export default () => WrappedComponent => {
   const config = Object.keys(WrappedComponent)
@@ -58,7 +58,7 @@ export class OwnAnimated extends Component {
     }, 2000)
   }
   conponentWillUpdate() {
-    console.log(this.state.v)
+    // console.log(this.state.v)
   }
   render() {
     return (
@@ -71,6 +71,25 @@ export class OwnAnimated extends Component {
         {this.props.children}
         {/* <Text>123</Text> */}
       </Animated.View>
+    )
+  }
+}
+
+export const GetPA = (_PA) => WrappedComponent => class extends Component {
+  async getPA(target, title, message) {
+    console.log('getPA')
+    const result = await PermissionsAndroid.request(target, {
+      title,
+      message,
+      buttonPositive: '同意',
+      // buttonNegative: '拒绝',
+      // buttonNeutral: '稍后'
+    })
+    return result
+  }
+  render() {
+    return (
+      <WrappedComponent {...this.props} getPA={this.getPA}/>
     )
   }
 }

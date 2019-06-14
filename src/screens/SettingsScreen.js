@@ -22,7 +22,6 @@ import { settingActions } from './actions'
 //   }
 // }
 function SettingScreen({settingActions, settingState}) {
-  console.log(settingActions)
   return (
     <View>
       <Text>{settingState.content}</Text>
@@ -35,7 +34,6 @@ SettingScreen.navigationOptions = {
 
 export default connect(
   state => {
-    console.log(state)
     return {
       settingState: state.wrap.settingState
     }

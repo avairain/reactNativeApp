@@ -3,7 +3,6 @@ import axios from 'axios'
 export default function ({dispatch}) {
   return next => action => {
     if (typeof action.url === 'string' && action.name === 'http') {
-      console.log(action)
       const [ loading, success, fail ] = action.status
       next({
         ...action,
@@ -19,7 +18,7 @@ export default function ({dispatch}) {
           }))
         })
         .catch(err => {
-          console.log(err)
+          // console.log(err)
           return Promise.resolve(next({
             type: fail,
             loading: false,

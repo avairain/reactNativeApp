@@ -46,7 +46,6 @@ import Title from '../components/common/BindTitle'
 // }
 function LinksScreen(props) {
   const goTo = v => {
-    console.log(v)
     props.navigation.push(v)
   }
   const list = props.linkState.list.map(v => <Text onPress={() => goTo(v)} key={v} style={styles.listStyle}>{v}</Text>)

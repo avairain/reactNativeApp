@@ -13,7 +13,6 @@ const _createStore = compose(
   // __DEV__ ? devToolsEnhancer({ realtime: true, port: 8000, hostname: 'localhost' }) : undefined
 )(createStore)
 
-console.log(rootReducer)
 const reducer = combineReducers(Object.assign({}, rootReducer))
 
 export default function (state) {

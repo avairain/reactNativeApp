@@ -31,7 +31,7 @@ class _AntDButton extends Component {
   }
 
   showToastNoMask() {
-    console.log('Toast')
+    // console.log('Toast')
     Toast.success('Toast without mask !!!', 1, null, false)
     // ToastAndroid.show('ToastAndroid', ToastAndroid.SHORT)
   }
@@ -101,7 +101,7 @@ export const AntDButton = connect(
 
 function AntD (props) {
   const goTo = v => {
-    console.log(v)
+    // console.log(v)
     props.navigation.push(v)
   }
   const list = props.list.map(v => <Text onPress={() => goTo(v)} key={v} style={styles.listStyle}>{v}</Text>)
@@ -114,7 +114,7 @@ function AntD (props) {
 
 export default connect(
   state => {
-    console.log(state)
+    // console.log(state)
     return { 
       list: state.wrap.antDesign.menuList
     }
