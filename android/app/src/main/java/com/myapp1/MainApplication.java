@@ -3,11 +3,11 @@ package com.myapp1;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
-import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
-import com.reactnativecommunity.slider.ReactSliderPackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.reactnativecommunity.viewpager.RNCViewPagerPackage;
+import com.reactnativecommunity.slider.ReactSliderPackage;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -29,11 +29,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new AsyncStoragePackage(),
-            new ReactNativePushNotificationPackage(),
             new RNCWebViewPackage(),
+            new ReactNativePushNotificationPackage(),
+            new RNCViewPagerPackage(),
             new ReactSliderPackage(),
-          new RNCViewPagerPackage(),
+            new AsyncStoragePackage(),
           new RNGestureHandlerPackage()
       );
     }

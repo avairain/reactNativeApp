@@ -8,11 +8,11 @@
 
 import React from 'react'
 import { Platform, StatusBar, StyleSheet, View, Text, BackHandler } from 'react-native'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+// import { bindActionCreators } from 'redux'
+// import { connect } from 'react-redux'
 
 import AppNavigator from './navigation/AppNavigator'
-import { homeActions } from './screens/actions'
+// import { homeActions } from './screens/actions'
 
 export default class App extends React.Component {
   state = {

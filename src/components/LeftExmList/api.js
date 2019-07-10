@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, Button, ScrollView, AppRegistry, AccessibilityInfo as AlI, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA } from 'react-native'
 import PushNotification from 'react-native-push-notification'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { apiActions } from '../../screens/actions'
+import { ImagePicker } from '@ant-design/react-native'
 
 import Common from '../common/Common'
 import { GetPA } from '../common/Common'
@@ -244,15 +245,29 @@ class _CameraRoll extends Component {
     super()
     this._getCameraRoll = this._getCameraRoll.bind(this)
     this._chenckPA = this._chenckPA.bind(this)
+    this._changeFile = this._changeFile.bind(this)
   }
   async _chenckPA() {
-    // console.log(PA.PERMISSIONS.READ_EXTERNAL_STORAGE)
+    console.log(PA.PERMISSIONS.READ_EXTERNAL_STORAGE)
     // console.log(PA.RESULTS.GRANTED)
     const canRead  = await PA.check(PA.PERMISSIONS.READ_EXTERNAL_STORAGE)
-    // console.log(canRead)
+    console.log(canRead)
     if (!canRead) {
       const result = await this.props.getPA(PA.PERMISSIONS.READ_EXTERNAL_STORAGE, '相册权限', '申请相册权限')
       console.log(result)
+    } else {
+      CR.getPhotos({
+        first: 5,
+        // groupTypes: 'All',
+        assetType: 'Photos'
+      })
+      .then(data => {
+        console.log(data)
+        this.props.changeImgList(data.edges)
+      })
+      .catch(err => {
+        throw err
+      })
     }
   }
   _getCameraRoll() {
@@ -271,28 +286,32 @@ class _CameraRoll extends Component {
     //   throw err
     // })
   }
+  _changeFile(file) {
+    console.log(file)
+  }
   render() {
     return (
-      <View>
+      <ScrollView>
         <Text>CameraRoll</Text>
         <Button
           onPress={this._getCameraRoll}
           title="press me!"></Button>
-          <ScrollView>
+          {/* <ScrollView>
             {this.props.list.map((p, i) => {
              return (
                <Image
                  key={i}
                  style={{
-                   width: 300,
-                   height: 100,
+                  width: p.node.image.width,
+                  height: p.node.image.height
                  }}
                  source={{ uri: p.node.image.uri }}
                />
              );
            })}
-         </ScrollView>
-      </View>
+         </ScrollView> */}
+         <ImagePicker onChange={this._changeFile} files={this.props.list.map(v => ({...v.node.image, url: v.node.image.uri}))} />
+      </ScrollView>
     )
   }
 }

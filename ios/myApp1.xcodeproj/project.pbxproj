@@ -41,12 +41,12 @@
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		101977B0A8734A6BBB8F5AC3 /* antfill.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F5D7C2771FC459E8C7537B0 /* antfill.ttf */; };
 		A5FE7605FD554EC48F00C13B /* antoutline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB79265624D848729DE86BDC /* antoutline.ttf */; };
-		6BE42CC3F81F44B09044E37D /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16FF8603A5854164B0388126 /* libRNGestureHandler.a */; };
-		97AFF5099956425487ED3FE3 /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD962CF442E64F6EAF20DFAF /* libRNGestureHandler-tvOS.a */; };
-		F7911D7084EA4C618D73DFF6 /* libRNCViewpager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB28F5C92144DB98D944C86 /* libRNCViewpager.a */; };
-		3A458314FEA343119E01E6C2 /* libRNCSlider.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6200DDECAA2049F2860B486D /* libRNCSlider.a */; };
-		94EE3CCD40BE4C3EB45467C0 /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A5D1E3D03E4B4AB9ABF5F3 /* libRNCWebView.a */; };
-		1D911AFC63F8461088A2831D /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 197AA2996646439C8727E562 /* libRNCAsyncStorage.a */; };
+		40CB119D048F4AE684A6445B /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2881E8D5CBB64F45976DC1B3 /* libRNGestureHandler.a */; };
+		41CDF940CB9244AB94DAEF89 /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 419BBB929D964243BC2DD1D7 /* libRNGestureHandler-tvOS.a */; };
+		6961021DE8B8489D94449B56 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D07F25AAE04BEBA86AC597 /* libRNCAsyncStorage.a */; };
+		9218DCBE6CCB4B6FB8D2ECFA /* libRNCSlider.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EF9560053484ECCB8EFA73F /* libRNCSlider.a */; };
+		4E64BC970BF94C838701AE64 /* libRNCViewpager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54849815C06D439495CE456E /* libRNCViewpager.a */; };
+		18D1ECCF09E044D685947B3C /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E46CF29F0A448109A21FFFA /* libRNCWebView.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -356,17 +356,17 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		6F5D7C2771FC459E8C7537B0 /* antfill.ttf */ = {isa = PBXFileReference; name = "antfill.ttf"; path = "../node_modules/@ant-design/icons-react-native/fonts/antfill.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		DB79265624D848729DE86BDC /* antoutline.ttf */ = {isa = PBXFileReference; name = "antoutline.ttf"; path = "../node_modules/@ant-design/icons-react-native/fonts/antoutline.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8574DF3A6CD447D39736D307 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; name = "RNGestureHandler.xcodeproj"; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		16FF8603A5854164B0388126 /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		BD962CF442E64F6EAF20DFAF /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; name = "libRNGestureHandler-tvOS.a"; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		466C317973B648DB9D46D4E9 /* RNCViewpager.xcodeproj */ = {isa = PBXFileReference; name = "RNCViewpager.xcodeproj"; path = "../node_modules/@react-native-community/viewpager/ios/RNCViewpager.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		2BB28F5C92144DB98D944C86 /* libRNCViewpager.a */ = {isa = PBXFileReference; name = "libRNCViewpager.a"; path = "libRNCViewpager.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		993DBB1CACE1444FBE8C2700 /* RNCSlider.xcodeproj */ = {isa = PBXFileReference; name = "RNCSlider.xcodeproj"; path = "../node_modules/@react-native-community/slider/ios/RNCSlider.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		6200DDECAA2049F2860B486D /* libRNCSlider.a */ = {isa = PBXFileReference; name = "libRNCSlider.a"; path = "libRNCSlider.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		B0597D7952AA46689057FF1E /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; name = "RNCWebView.xcodeproj"; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		C0A5D1E3D03E4B4AB9ABF5F3 /* libRNCWebView.a */ = {isa = PBXFileReference; name = "libRNCWebView.a"; path = "libRNCWebView.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		BB1FC3BD59744E81ABFFDC7C /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; name = "RNCAsyncStorage.xcodeproj"; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		197AA2996646439C8727E562 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; name = "libRNCAsyncStorage.a"; path = "libRNCAsyncStorage.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		22CF2EF83BD4485BB2E35076 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; name = "RNGestureHandler.xcodeproj"; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		2881E8D5CBB64F45976DC1B3 /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		419BBB929D964243BC2DD1D7 /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; name = "libRNGestureHandler-tvOS.a"; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		626DD8AA59F9452385FC6C58 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; name = "RNCAsyncStorage.xcodeproj"; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		C5D07F25AAE04BEBA86AC597 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; name = "libRNCAsyncStorage.a"; path = "libRNCAsyncStorage.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		33E310D527494CC98CF6DD93 /* RNCSlider.xcodeproj */ = {isa = PBXFileReference; name = "RNCSlider.xcodeproj"; path = "../node_modules/@react-native-community/slider/ios/RNCSlider.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		4EF9560053484ECCB8EFA73F /* libRNCSlider.a */ = {isa = PBXFileReference; name = "libRNCSlider.a"; path = "libRNCSlider.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		CD61D0BB2D884199B70CBFC0 /* RNCViewpager.xcodeproj */ = {isa = PBXFileReference; name = "RNCViewpager.xcodeproj"; path = "../node_modules/@react-native-community/viewpager/ios/RNCViewpager.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		54849815C06D439495CE456E /* libRNCViewpager.a */ = {isa = PBXFileReference; name = "libRNCViewpager.a"; path = "libRNCViewpager.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		B4440619630B4062997A29D4 /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; name = "RNCWebView.xcodeproj"; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		6E46CF29F0A448109A21FFFA /* libRNCWebView.a */ = {isa = PBXFileReference; name = "libRNCWebView.a"; path = "libRNCWebView.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,11 +395,11 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				6BE42CC3F81F44B09044E37D /* libRNGestureHandler.a in Frameworks */,
-				F7911D7084EA4C618D73DFF6 /* libRNCViewpager.a in Frameworks */,
-				3A458314FEA343119E01E6C2 /* libRNCSlider.a in Frameworks */,
-				94EE3CCD40BE4C3EB45467C0 /* libRNCWebView.a in Frameworks */,
-				1D911AFC63F8461088A2831D /* libRNCAsyncStorage.a in Frameworks */,
+				40CB119D048F4AE684A6445B /* libRNGestureHandler.a in Frameworks */,
+				6961021DE8B8489D94449B56 /* libRNCAsyncStorage.a in Frameworks */,
+				9218DCBE6CCB4B6FB8D2ECFA /* libRNCSlider.a in Frameworks */,
+				4E64BC970BF94C838701AE64 /* libRNCViewpager.a in Frameworks */,
+				18D1ECCF09E044D685947B3C /* libRNCWebView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +418,7 @@
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
 				208F4ED1AEE44E4BBF4A7C0B /* libRNGestureHandler-tvOS.a in Frameworks */,
 				97AFF5099956425487ED3FE3 /* libRNGestureHandler-tvOS.a in Frameworks */,
+				41CDF940CB9244AB94DAEF89 /* libRNGestureHandler-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,11 +592,11 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				8574DF3A6CD447D39736D307 /* RNGestureHandler.xcodeproj */,
-				466C317973B648DB9D46D4E9 /* RNCViewpager.xcodeproj */,
-				993DBB1CACE1444FBE8C2700 /* RNCSlider.xcodeproj */,
-				B0597D7952AA46689057FF1E /* RNCWebView.xcodeproj */,
-				BB1FC3BD59744E81ABFFDC7C /* RNCAsyncStorage.xcodeproj */,
+				22CF2EF83BD4485BB2E35076 /* RNGestureHandler.xcodeproj */,
+				626DD8AA59F9452385FC6C58 /* RNCAsyncStorage.xcodeproj */,
+				33E310D527494CC98CF6DD93 /* RNCSlider.xcodeproj */,
+				CD61D0BB2D884199B70CBFC0 /* RNCViewpager.xcodeproj */,
+				B4440619630B4062997A29D4 /* RNCWebView.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1240,16 +1241,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
-					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\async-storage\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
+					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 				);
 			};
 			name = Debug;
@@ -1275,16 +1274,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
-					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\async-storage\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
+					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 				);
 			};
 			name = Release;
@@ -1308,10 +1305,10 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
-					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\async-storage\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
+					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 				);
 			};
 			name = Debug;
@@ -1334,10 +1331,10 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
-					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\async-storage\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
+					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 				);
 			};
 			name = Release;
@@ -1371,16 +1368,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
-					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\async-storage\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
+					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 				);
 			};
 			name = Debug;
@@ -1414,16 +1409,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
-					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\async-storage\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
+					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 				);
 			};
 			name = Release;
@@ -1456,16 +1449,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
-					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\async-storage\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
+					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 				);
 			};
 			name = Debug;
@@ -1498,16 +1489,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
-					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\async-storage\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
+					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
+					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 				);
 			};
 			name = Release;
