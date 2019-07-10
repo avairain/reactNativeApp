@@ -19,11 +19,12 @@ const initState = {
   menuList: [ ...RnApi ],
   value: 0,
   asyncStorageValue: null,
-  imgList: []
+  imgList: [],
+  viewImgList: []
 }
 
-const types = ['LOAD', 'SET_INIT_ANIMATED_VALUE', 'LOAD_ANIMATED_VALUE', 'CHANGE_ASYNC_STORAGE', 'CHANGE_IMG_LIST']
-const [ LOAD, SET_INIT_ANIMATED_VALUE, LOAD_ANIMATED_VALUE, CHANGE_ASYNC_STORAGE, CHANGE_IMG_LIST ] = types
+const types = ['LOAD', 'SET_INIT_ANIMATED_VALUE', 'LOAD_ANIMATED_VALUE', 'CHANGE_ASYNC_STORAGE', 'CHANGE_IMG_LIST', 'CHANGE_VIEW_IMG_LIST']
+const [ LOAD, SET_INIT_ANIMATED_VALUE, LOAD_ANIMATED_VALUE, CHANGE_ASYNC_STORAGE, CHANGE_IMG_LIST, CHANGE_VIEW_IMG_LIST ] = types
 // actions
 
 function _setANValue(v) {
@@ -59,6 +60,17 @@ export function changeImgList(v) {
   return dispatch => dispatch(_changeImgList(v))
 }
 
+function _changeViewImgList(v) {
+  return {
+    type: CHANGE_VIEW_IMG_LIST,
+    payload: v
+  }
+}
+
+export function changeViewImgList(v) {
+  return dispatch => dispatch(_changeViewImgList(v))
+}
+
 // reducer
 export default function (state = initState, action) {
   switch (action.type) {
@@ -86,7 +98,12 @@ export default function (state = initState, action) {
       return {
         ...state,
         imgList: [...action.payload]
-      }    
+      }
+    case CHANGE_VIEW_IMG_LIST:
+      return {
+        ...state,
+        viewImgList: [...action.payload]
+      }
     default:
       return {
         ...state

@@ -262,7 +262,6 @@ class _CameraRoll extends Component {
         assetType: 'Photos'
       })
       .then(data => {
-        console.log(data)
         this.props.changeImgList(data.edges)
       })
       .catch(err => {
@@ -287,7 +286,7 @@ class _CameraRoll extends Component {
     // })
   }
   _changeFile(file) {
-    console.log(file)
+    this.props.changeViewImgList(file)
   }
   render() {
     return (
@@ -310,7 +309,10 @@ class _CameraRoll extends Component {
              );
            })}
          </ScrollView> */}
-         <ImagePicker onChange={this._changeFile} files={this.props.list.map(v => ({...v.node.image, url: v.node.image.uri}))} />
+        <ImagePicker
+           onChange={this._changeFile}
+           selectable={ false }
+           files={ this.props.viewImgList } />
       </ScrollView>
     )
   }
@@ -318,10 +320,12 @@ class _CameraRoll extends Component {
 
 export const CameraRoll = connect(
   state => ({
-    list: state.wrap.api.imgList
+    list: state.wrap.api.imgList,
+    viewImgList: state.wrap.api.viewImgList
   }),
   dispatch => ({
-    changeImgList: bindActionCreators(apiActions.changeImgList, dispatch)
+    changeImgList: bindActionCreators(apiActions.changeImgList, dispatch),
+    changeViewImgList: bindActionCreators(apiActions.changeViewImgList, dispatch)
   })
 )(_CameraRoll)
 
