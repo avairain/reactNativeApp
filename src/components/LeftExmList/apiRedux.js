@@ -20,11 +20,12 @@ const initState = {
   value: 0,
   asyncStorageValue: null,
   imgList: [],
-  viewImgList: []
+  viewImgList: [],
+  clipboard: ''
 }
 
-const types = ['LOAD', 'SET_INIT_ANIMATED_VALUE', 'LOAD_ANIMATED_VALUE', 'CHANGE_ASYNC_STORAGE', 'CHANGE_IMG_LIST', 'CHANGE_VIEW_IMG_LIST']
-const [ LOAD, SET_INIT_ANIMATED_VALUE, LOAD_ANIMATED_VALUE, CHANGE_ASYNC_STORAGE, CHANGE_IMG_LIST, CHANGE_VIEW_IMG_LIST ] = types
+const types = ['LOAD', 'SET_INIT_ANIMATED_VALUE', 'LOAD_ANIMATED_VALUE', 'CHANGE_ASYNC_STORAGE', 'CHANGE_IMG_LIST', 'CHANGE_VIEW_IMG_LIST', 'CHANGE_CLIPBOARD']
+const [ LOAD, SET_INIT_ANIMATED_VALUE, LOAD_ANIMATED_VALUE, CHANGE_ASYNC_STORAGE, CHANGE_IMG_LIST, CHANGE_VIEW_IMG_LIST, CHANGE_CLIPBOARD ] = types
 // actions
 
 function _setANValue(v) {
@@ -71,6 +72,17 @@ export function changeViewImgList(v) {
   return dispatch => dispatch(_changeViewImgList(v))
 }
 
+function _changeClipboard(v) {
+  return {
+    type: CHANGE_CLIPBOARD,
+    payload: v
+  }
+}
+
+export function changeClipboard(v) {
+  return dispatch => dispatch(_changeClipboard(v))
+}
+
 // reducer
 export default function (state = initState, action) {
   switch (action.type) {
@@ -103,6 +115,11 @@ export default function (state = initState, action) {
       return {
         ...state,
         viewImgList: [...action.payload]
+      }
+    case CHANGE_CLIPBOARD:
+      return {
+        ...state,
+        clipboard: [...action.payload]
       }
     default:
       return {

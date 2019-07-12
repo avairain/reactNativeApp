@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB } from 'react-native'
 import PushNotification from 'react-native-push-notification'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -340,6 +340,38 @@ function RnApi({ list, navigation }) {
     </View>
   )
 }
+
+class _Clipboard extends Component {
+  constructor() {
+    super()
+    this.getClipboard = this.getClipboard.bind(this)
+  }
+  async getClipboard() {
+    CB.setString('hello world');
+    const s = await CB.getString()
+    console.log(s)
+    this.props.changeClipboard(s)
+  }
+  render() {
+    const { clipboard } = this.props
+    console.log(clipboard)
+    return (
+      <View>
+        <Text onPress={this.getClipboard}>Clipboard</Text>
+        <Text>{clipboard}</Text>
+      </View>
+    )
+  }
+}
+
+export const Clipboard = connect(
+  state => ({
+    clipboard: state.wrap.api.clipboard
+  }),
+  dispatch => ({
+    changeClipboard: bindActionCreators(apiActions.changeClipboard, dispatch)
+  })
+)(_Clipboard)
 
 export default connect(
   state => ({
