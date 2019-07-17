@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB, DatePickerAndroid as DPA } from 'react-native'
 import PushNotification from 'react-native-push-notification'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -364,6 +364,26 @@ class _Clipboard extends Component {
   }
 }
 
+export class DatePickerAndroid extends Component {
+  async componentDidMount() {
+    const t = await DPA.open({
+      // 要设置默认值为今天的话，使用`new Date()`即可。
+      // 下面显示的会是2020年5月25日。月份是从0开始算的。
+      date: new Date(2020, 4, 25)
+    })
+    console.log(t)
+  }
+
+  render() {
+    return (
+      <View>
+        <Text>
+          DatePickerAndroid
+        </Text>
+      </View>
+    )
+  }
+}
 export const Clipboard = connect(
   state => ({
     clipboard: state.wrap.api.clipboard
