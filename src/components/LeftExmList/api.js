@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB, DatePickerAndroid as DPA } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB, DatePickerAndroid as DPA, Dimensions as Ds } from 'react-native'
 import PushNotification from 'react-native-push-notification'
+import { init, Geolocation as Gc } from "react-native-amap-geolocation";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { apiActions } from '../../screens/actions'
@@ -311,7 +312,7 @@ class _CameraRoll extends Component {
          </ScrollView> */}
         <ImagePicker
            onChange={this._changeFile}
-           selectable={ false }
+           selectable={ true }
            files={ this.props.viewImgList } />
       </ScrollView>
     )
@@ -329,17 +330,6 @@ export const CameraRoll = connect(
   })
 )(_CameraRoll)
 
-function RnApi({ list, navigation }) {
-  const goTo = (v) => {
-    // console.log(v)
-    navigation.push(v)
-  }
-  return (
-    <View>
-      {list.map(v => <Text onPress={() => goTo(v)} key={v} style={styles.listStyle}>{v}</Text>)}
-    </View>
-  )
-}
 
 class _Clipboard extends Component {
   constructor() {
@@ -393,6 +383,65 @@ export const Clipboard = connect(
   })
 )(_Clipboard)
 
+export class Dimensions extends Component {
+  render() {
+    return (
+      <View>
+        <Text style={styles.dimensions}>{ Ds.get('window').height }</Text>
+      </View>
+    )
+  }
+}
+
+@GetPA()
+export class Geolocation extends Component {
+  constructor() {
+    super()
+    this.getPosition = this.getPosition.bind(this)
+  }
+
+  async componentDidMount() {
+    const t = await this.props.getPA(PA.PERMISSIONS.ACCESS_COARSE_LOCATION, '获取地理位置', '获取地理位置')
+    console.log(t)
+    console.log(t === PA.RESULTS.GRANTED)
+    if(t === PA.RESULTS.GRANTED) {
+      console.log(1)
+      const r = await init({
+        android: "0e43cd4343d8c84369e38276155524cf"
+      });
+      console.log(r)
+      console.dir(Gc)
+    }
+  }
+  getPosition() {
+    console.log('getPosition')
+    Gc.getCurrentPosition(({ coords }) => {
+      console.log(arguments)
+      console.log(coords);
+    });
+  }
+  render() {
+    return (
+      <View>
+        <Text onPress={this.getPosition}>Geolocation</Text>
+        <Text></Text>
+      </View>
+    )
+  }
+}
+
+function RnApi({ list, navigation }) {
+  const goTo = (v) => {
+    // console.log(v)
+    navigation.push(v)
+  }
+  return (
+    <ScrollView style={{ ...styles.container }}>
+      {list.map(v => <Text onPress={() => goTo(v)} key={v} style={styles.listStyle}>{v}</Text>)}
+    </ScrollView>
+  )
+}
+
 export default connect(
   state => ({
     list: state.wrap.api.menuList
@@ -415,7 +464,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // paddingTop: 15,
-    backgroundColor: '#fff',
+    backgroundColor: '#0f0',
+    // marginBottom: 20
   },
   listStyle: {
     marginLeft: '10%',
@@ -424,6 +474,10 @@ const styles = StyleSheet.create({
   toolbar: {
     backgroundColor: '#f00',
     height: 56,
+  },
+  dimensions: {
+    height: 500,
+    backgroundColor: '#f00'
   }
 })
 

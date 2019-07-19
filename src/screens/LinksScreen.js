@@ -4,9 +4,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { linkActions } from './actions'
-import Title from '../components/common/BindTitle'
-// import { ExpoLinksView } from '@expo/samples';
-
 
 // @Title()
 // class LinksScreen extends React.Component {

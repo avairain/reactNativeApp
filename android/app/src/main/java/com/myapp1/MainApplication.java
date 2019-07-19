@@ -3,6 +3,7 @@ package com.myapp1;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import cn.qiuxiang.react.geolocation.AMapGeolocationPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.reactnativecommunity.viewpager.RNCViewPagerPackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new AMapGeolocationPackage(),
             new RNCWebViewPackage(),
             new ReactNativePushNotificationPackage(),
             new RNCViewPagerPackage(),

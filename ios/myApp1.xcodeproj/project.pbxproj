@@ -47,6 +47,7 @@
 		9218DCBE6CCB4B6FB8D2ECFA /* libRNCSlider.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EF9560053484ECCB8EFA73F /* libRNCSlider.a */; };
 		4E64BC970BF94C838701AE64 /* libRNCViewpager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54849815C06D439495CE456E /* libRNCViewpager.a */; };
 		18D1ECCF09E044D685947B3C /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E46CF29F0A448109A21FFFA /* libRNCWebView.a */; };
+		C45DA537CCA84436B21B5011 /* libAMapGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FEDCFB0B24E48AB9EFB729D /* libAMapGeolocation.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -367,6 +368,8 @@
 		54849815C06D439495CE456E /* libRNCViewpager.a */ = {isa = PBXFileReference; name = "libRNCViewpager.a"; path = "libRNCViewpager.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		B4440619630B4062997A29D4 /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; name = "RNCWebView.xcodeproj"; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		6E46CF29F0A448109A21FFFA /* libRNCWebView.a */ = {isa = PBXFileReference; name = "libRNCWebView.a"; path = "libRNCWebView.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		C37243F77EDF489B92292F01 /* AMapGeolocation.xcodeproj */ = {isa = PBXFileReference; name = "AMapGeolocation.xcodeproj"; path = "../node_modules/react-native-amap-geolocation/lib/ios/AMapGeolocation.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		5FEDCFB0B24E48AB9EFB729D /* libAMapGeolocation.a */ = {isa = PBXFileReference; name = "libAMapGeolocation.a"; path = "libAMapGeolocation.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +403,7 @@
 				9218DCBE6CCB4B6FB8D2ECFA /* libRNCSlider.a in Frameworks */,
 				4E64BC970BF94C838701AE64 /* libRNCViewpager.a in Frameworks */,
 				18D1ECCF09E044D685947B3C /* libRNCWebView.a in Frameworks */,
+				C45DA537CCA84436B21B5011 /* libAMapGeolocation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +601,7 @@
 				33E310D527494CC98CF6DD93 /* RNCSlider.xcodeproj */,
 				CD61D0BB2D884199B70CBFC0 /* RNCViewpager.xcodeproj */,
 				B4440619630B4062997A29D4 /* RNCWebView.xcodeproj */,
+				C37243F77EDF489B92292F01 /* AMapGeolocation.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1241,6 +1246,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1270,6 +1276,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myApp1.app/myApp1";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1368,6 +1375,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1405,6 +1413,7 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1449,6 +1458,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1485,6 +1495,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
