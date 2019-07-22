@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB, DatePickerAndroid as DPA, Dimensions as Ds } from 'react-native'
 import PushNotification from 'react-native-push-notification'
-import { init, Geolocation as Gc } from "react-native-amap-geolocation";
+import { MapView } from 'react-native-amap3d'
+import { init, Geolocation as Gc, addLocationListener, start, stop, setInterval as sI, setNeedAddress } from "react-native-amap-geolocation";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { apiActions } from '../../screens/actions'
@@ -398,33 +399,42 @@ export class Geolocation extends Component {
   constructor() {
     super()
     this.getPosition = this.getPosition.bind(this)
+    this.state = {
+      coords: '{}'
+    }
   }
 
   async componentDidMount() {
     const t = await this.props.getPA(PA.PERMISSIONS.ACCESS_COARSE_LOCATION, '获取地理位置', '获取地理位置')
-    console.log(t)
-    console.log(t === PA.RESULTS.GRANTED)
     if(t === PA.RESULTS.GRANTED) {
-      console.log(1)
-      const r = await init({
+      await init({
         android: "0e43cd4343d8c84369e38276155524cf"
       });
-      console.log(r)
-      console.dir(Gc)
     }
   }
   getPosition() {
     console.log('getPosition')
+    addLocationListener(loc => console.log(loc))
+    setNeedAddress(true)
+    start()
+    sI(3000)
     Gc.getCurrentPosition(({ coords }) => {
       console.log(arguments)
       console.log(coords);
+      this.setState({ coords: JSON.stringify(coords) })
     });
   }
+
   render() {
+    const { coords } = this.state
+    const c = JSON.parse(coords)
+    console.log(c)
     return (
       <View>
         <Text onPress={this.getPosition}>Geolocation</Text>
-        <Text></Text>
+        <Text onPress={stop}>end</Text>
+        <Text>{ coords }</Text>
+        { (c.longitude && c.latitude) ? <MapView coordinate={ c } style={{...styles.dimensions}}/> : null }
       </View>
     )
   }
