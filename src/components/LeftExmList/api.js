@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB, DatePickerAndroid as DPA, Dimensions as Ds } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB, DatePickerAndroid as DPA, Dimensions as Ds, ImageEditor as IE } from 'react-native'
 import PushNotification from 'react-native-push-notification'
 import { MapView } from 'react-native-amap3d'
-import { init, Geolocation as Gc, addLocationListener, start, stop, setInterval as sI, setNeedAddress } from "react-native-amap-geolocation";
+import { init, Geolocation as Gc, addLocationListener, start, stop, setInterval as sI, setNeedAddress } from "react-native-amap-geolocation"
+// import IP from 'react-native-image-crop-picker'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { apiActions } from '../../screens/actions'
@@ -440,6 +441,54 @@ export class Geolocation extends Component {
   }
 }
 
+export class ImageEditor extends Component {
+  static Pic = { uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' }
+
+  constructor() {
+    super()
+    this.cropImage = this.cropImage.bind(this)
+    this.renderImage = this.renderImage.bind(this)
+    this.state = {
+      imgList: []
+    }
+  }
+
+  cropImage() {
+    IE.cropImage(
+      ImageEditor.Pic.uri,
+      { offset: { x: 0, y: 0 },
+      size: { width: 150, height: 150 },
+      displaySize: { width: 300, height: 300 },
+      resizeMode: 'contain'},
+      data => {
+        console.log(data)
+        this.setState({ imgList: [...this.state.imgList, data]})
+        // IP.openPicker({
+        //   width: 300,
+        //   height: 400,
+        //   cropping: true
+        // }).then(image => {
+        //   console.log(image)
+        // }) 
+      },
+      err => console.log(err))
+  }
+
+  renderImage(list) {
+    return list.map((v, i) => <Image key={i} style={{ width: 193, height: 110 }} source={{ uri: v}}></Image>)
+  }
+
+  render() {
+    const pic = ImageEditor.Pic
+    const { imgList: list } = this.state
+    return (
+      <View>
+        <Text onPress={this.cropImage}>ImageEditor</Text>
+        { this.renderImage(list) }
+      </View>
+    )
+  }
+}
 function RnApi({ list, navigation }) {
   const goTo = (v) => {
     // console.log(v)
