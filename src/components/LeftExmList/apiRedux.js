@@ -21,11 +21,18 @@ const initState = {
   asyncStorageValue: null,
   imgList: [],
   viewImgList: [],
-  clipboard: ''
+  clipboard: '',
+  layoutAnimationStyle: {
+    width: 100,
+    height: 100,
+    position: 'absolute',
+    left: 0,
+    top: 0
+  }
 }
 
-const types = ['LOAD', 'SET_INIT_ANIMATED_VALUE', 'LOAD_ANIMATED_VALUE', 'CHANGE_ASYNC_STORAGE', 'CHANGE_IMG_LIST', 'CHANGE_VIEW_IMG_LIST', 'CHANGE_CLIPBOARD']
-const [ LOAD, SET_INIT_ANIMATED_VALUE, LOAD_ANIMATED_VALUE, CHANGE_ASYNC_STORAGE, CHANGE_IMG_LIST, CHANGE_VIEW_IMG_LIST, CHANGE_CLIPBOARD ] = types
+const types = ['LOAD', 'SET_INIT_ANIMATED_VALUE', 'LOAD_ANIMATED_VALUE', 'CHANGE_ASYNC_STORAGE', 'CHANGE_IMG_LIST', 'CHANGE_VIEW_IMG_LIST', 'CHANGE_CLIPBOARD', 'CHANGE_LAYOUTANIMATIONSTYLE']
+const [ LOAD, SET_INIT_ANIMATED_VALUE, LOAD_ANIMATED_VALUE, CHANGE_ASYNC_STORAGE, CHANGE_IMG_LIST, CHANGE_VIEW_IMG_LIST, CHANGE_CLIPBOARD, CHANGE_LAYOUTANIMATIONSTYLE ] = types
 // actions
 
 function _setANValue(v) {
@@ -83,6 +90,17 @@ export function changeClipboard(v) {
   return dispatch => dispatch(_changeClipboard(v))
 }
 
+function _changeLayoutAnimationStyle(v) {
+  return {
+    type: CHANGE_LAYOUTANIMATIONSTYLE,
+    payload: v
+  }
+}
+
+export function changeLayoutAnimationStyle(v) {
+  return dispatch => dispatch(_changeLayoutAnimationStyle(v))
+}
+
 // reducer
 export default function (state = initState, action) {
   switch (action.type) {
@@ -120,6 +138,11 @@ export default function (state = initState, action) {
       return {
         ...state,
         clipboard: [...action.payload]
+      }
+    case CHANGE_LAYOUTANIMATIONSTYLE:
+      return {
+        ...state,
+        layoutAnimationStyle: { ...action.payload }
       }
     default:
       return {

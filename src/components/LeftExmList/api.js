@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB, DatePickerAndroid as DPA, Dimensions as Ds, ImageEditor as IE } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB, DatePickerAndroid as DPA, Dimensions as Ds, ImageEditor as IE, Keyboard as K, LayoutAnimation as LA, UIManager, Linking as Lk } from 'react-native'
 import PushNotification from 'react-native-push-notification'
 import { MapView } from 'react-native-amap3d'
 import { init, Geolocation as Gc, addLocationListener, start, stop, setInterval as sI, setNeedAddress } from "react-native-amap-geolocation"
@@ -12,6 +12,7 @@ import { ImagePicker } from '@ant-design/react-native'
 import Common from '../common/Common'
 import { GetPA } from '../common/Common'
 
+UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
 /*
   // 辅助视障人士 
   @Common()
@@ -463,6 +464,9 @@ export class ImageEditor extends Component {
       data => {
         console.log(data)
         this.setState({ imgList: [...this.state.imgList, data]})
+        // todo
+        // 第三方动态裁剪
+
         // IP.openPicker({
         //   width: 300,
         //   height: 400,
@@ -475,7 +479,7 @@ export class ImageEditor extends Component {
   }
 
   renderImage(list) {
-    return list.map((v, i) => <Image key={i} style={{ width: 193, height: 110 }} source={{ uri: v}}></Image>)
+    return list.map((v, i) => <Image key={i} style={{ width: 193, height: 110 }} source={{ uri: v }}></Image>)
   }
 
   render() {
@@ -489,6 +493,83 @@ export class ImageEditor extends Component {
     )
   }
 }
+
+// InteractionManager
+
+export class Keyboard extends Component {
+  render() {
+    return (
+      <View>
+        <TextInput onSubmitEditing={K.dismiss}/>
+      </View>
+    )
+  }
+}
+
+// StyleSheet
+
+function _LayoutAnimation({ style, changeStyle }) {
+  const { width, height, top, left } = style
+  const fn = () => {
+    console.log(LA.Types)
+    LA.configureNext({
+      duration: 1000,   //持续时间
+      create: {
+          type: LA.Types.spring,
+          property: 'opacity',
+          springDamping:0.4
+      },
+      update: {
+          type: LA.Types.spring,
+          springDamping: 0.4,
+      }
+  });
+    changeStyle({ ...style, width: width + 50, height: height + 50, left: left + 50, top: top + 50 })
+  }
+  return (
+    <View>
+      <Image style={{ ...style }} source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' }} />
+      <Text onPress={fn}>LayoutAnimation</Text>
+    </View>
+  )
+}
+
+export const LayoutAnimation = connect(
+  state => ({
+    style: state.wrap.api.layoutAnimationStyle
+  }),
+  dispatch => ({
+    changeStyle: bindActionCreators(apiActions.changeLayoutAnimationStyle, dispatch)
+  })
+)(_LayoutAnimation)
+
+export class Linking extends Component {
+  constructor() {
+    super()
+    this.telephone = this.telephone.bind(this)
+    this.position = this.position.bind(this)
+  }
+
+  telephone() {
+    console.log('telephone')
+    Lk.openURL(`tel:${10086}`)
+  }
+
+  position() {
+    console.log('telephone')
+    Lk.openURL("geo:116.403322, 39.920255")
+  }
+
+  render() {
+    return (
+      <ScrollView>
+        <Text onPress={this.telephone}>telephone</Text>
+        <Text onPress={this.position}>position</Text>
+      </ScrollView>
+    )
+  }
+}
+
 function RnApi({ list, navigation }) {
   const goTo = (v) => {
     // console.log(v)
