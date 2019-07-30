@@ -7,7 +7,7 @@
  */
 
 import React from 'react'
-import { Platform, StatusBar, StyleSheet, View, Text, BackHandler } from 'react-native'
+import { Platform, StatusBar, StyleSheet, View, Text, BackHandler,  } from 'react-native'
 // import { bindActionCreators } from 'redux'
 // import { connect } from 'react-redux'
 

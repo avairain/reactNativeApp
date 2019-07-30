@@ -548,6 +548,11 @@ export class Linking extends Component {
     super()
     this.telephone = this.telephone.bind(this)
     this.position = this.position.bind(this)
+    this.browser = this.browser.bind(this)
+    this.message = this.message.bind(this)
+    this.qq = this.qq.bind(this)
+    this.alipay = this.alipay.bind(this)
+    this.mail = this.mail.bind(this)
   }
 
   telephone() {
@@ -560,11 +565,46 @@ export class Linking extends Component {
     Lk.openURL("geo:116.403322, 39.920255")
   }
 
+  browser() {
+    console.log('browser')
+    Lk.openURL("https://www.baidu.com")
+  }
+
+  message() {
+    console.log('message')
+    Lk.openURL("smsto:10086")
+  }
+
+  qq() {
+    console.log('qq')
+    Lk.openURL("mqqwpa://im/chat?chat_type=wpa&uin=123456")
+  }
+
+  alipay() {
+    console.log('alipay')
+    Lk.openURL("alipayqr://platformapi/startapp?saId=10000007")
+  }
+
+  mail() {
+    console.log('mail')
+    Lk.openURL("mailto:753342031@qq. com")
+  }
+
+  componentDidMount() {
+    Lk.getInitialURL()
+      .then(url => console.log(url))
+  }
+
   render() {
     return (
       <ScrollView>
         <Text onPress={this.telephone}>telephone</Text>
         <Text onPress={this.position}>position</Text>
+        <Text onPress={this.browser}>browser</Text>
+        <Text onPress={this.message}>message</Text>
+        <Text onPress={this.qq}>QQ</Text>
+        <Text onPress={this.alipay}>alipay</Text>
+        <Text onPress={this.mail}>mail</Text>
       </ScrollView>
     )
   }

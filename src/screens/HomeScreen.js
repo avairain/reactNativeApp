@@ -7,6 +7,8 @@ import {
   Text,
   TouchableOpacity,
   View,
+  AppState,
+  Linking
 } from 'react-native';
 
 import { bindActionCreators } from 'redux'
@@ -20,9 +22,28 @@ class HomeScreen extends React.Component {
     header: null,
   }
 
+  constructor() {
+    super()
+    this.link = this.link.bind(this)
+  }
+
+  link(appState) {
+    if(appState=='active'){
+        Linking.getInitialURL().then(url=>{
+          url && this.props.navigation.push(url.split('//')[1])
+        })
+    }
+  }
+
   componentWillMount() {
     this.props.homeActions.showHome()
+    AppState.addEventListener('change', this.link)
   }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this.link)
+  }
+
   render() {
     const { error, img } = this.props.homeState
     return (
