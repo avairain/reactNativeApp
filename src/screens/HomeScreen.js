@@ -31,6 +31,7 @@ class HomeScreen extends React.Component {
     if(appState=='active'){
         Linking.getInitialURL().then(url=>{
           url && this.props.navigation.push(url.split('//')[1])
+          AppState.removeEventListener('change', this.link)
         })
     }
   }

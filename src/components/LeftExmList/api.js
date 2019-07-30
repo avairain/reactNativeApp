@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB, DatePickerAndroid as DPA, Dimensions as Ds, ImageEditor as IE, Keyboard as K, LayoutAnimation as LA, UIManager, Linking as Lk } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB, DatePickerAndroid as DPA, Dimensions as Ds, ImageEditor as IE, Keyboard as K, LayoutAnimation as LA, UIManager, Linking as Lk, Share as S, TimePickerAndroid as TPA , ToastAndroid as TA, Vibration as V } from 'react-native'
 import PushNotification from 'react-native-push-notification'
 import { MapView } from 'react-native-amap3d'
 import { init, Geolocation as Gc, addLocationListener, start, stop, setInterval as sI, setNeedAddress } from "react-native-amap-geolocation"
@@ -553,6 +553,7 @@ export class Linking extends Component {
     this.qq = this.qq.bind(this)
     this.alipay = this.alipay.bind(this)
     this.mail = this.mail.bind(this)
+    this.settings = this.settings.bind(this)
   }
 
   telephone() {
@@ -590,6 +591,11 @@ export class Linking extends Component {
     Lk.openURL("mailto:753342031@qq. com")
   }
 
+  settings() {
+    console.log('settings')
+    // Lk.openSettings()  // 版本太低
+  }
+
   componentDidMount() {
     Lk.getInitialURL()
       .then(url => console.log(url))
@@ -605,7 +611,99 @@ export class Linking extends Component {
         <Text onPress={this.qq}>QQ</Text>
         <Text onPress={this.alipay}>alipay</Text>
         <Text onPress={this.mail}>mail</Text>
+        <Text onPress={this.settings}>settings</Text>
       </ScrollView>
+    )
+  }
+}
+
+// PanResponder
+
+// PermissionsAndroid
+
+export class Share extends Component {
+  constructor() {
+    super()
+    this.share = this.share.bind(this)
+  }
+  
+  async share() {
+    const t = await S.share({
+      message: 'share share'
+    })
+    console.log(t)
+  }
+
+  render() {
+    return (
+      <View>
+        <Text onPress={this.share}>Share</Text>
+      </View>
+    )
+  }
+}
+
+// Systrace
+
+export class TimePickerAndroid extends Component {
+  async componentDidMount() {
+    const t = await TPA.open({
+      hour: 13,
+      minute: 2,
+      is24Hour: false
+    })
+    console.log(t)
+  }
+
+  render() {
+    return (
+      <View>
+        <Text>TimePickerAndroid</Text>
+      </View>
+    )
+  }
+}
+
+export class ToastAndroid extends Component {
+  constructor() {
+    super()
+    this.TA = this.TA.bind(this)
+  }
+
+  TA() {
+    TA.show('ToastAndroid', TA.SHORT)
+  }
+
+  render() {
+    return (
+      <View>
+        <Text onPress={this.TA}>ToastAndroid</Text>
+      </View>
+    )
+  }
+}
+
+export class Vibration extends Component {
+  constructor() {
+    super()
+    this.vibration = this.vibration.bind(this)
+    this.vibrationList = this.vibrationList.bind(this)
+  }
+
+  vibration() {
+    V.vibrate(3000)
+  }
+
+  vibrationList() {
+    V.vibrate([1000, 1500, 1000, 3000])
+  }
+
+  render() {
+    return (
+      <View>
+        <Text onPress={this.vibration}>Vibration</Text>
+        <Text onPress={this.vibrationList}>VibrationList</Text>
+      </View>
     )
   }
 }
