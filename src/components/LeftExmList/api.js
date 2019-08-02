@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent as Component } from 'react'
 import { View, Text, StyleSheet, TextInput, Button, ScrollView, AccessibilityInfo as AlI, Image, Alert as A, Animated as An, AppState as AS, CameraRoll as CR, PermissionsAndroid as PA, Clipboard as CB, DatePickerAndroid as DPA, Dimensions as Ds, ImageEditor as IE, Keyboard as K, LayoutAnimation as LA, UIManager, Linking as Lk, Share as S, TimePickerAndroid as TPA , ToastAndroid as TA, Vibration as V } from 'react-native'
 import PushNotification from 'react-native-push-notification'
 import { MapView } from 'react-native-amap3d'
@@ -682,6 +682,8 @@ export class ToastAndroid extends Component {
     )
   }
 }
+
+// Transforms
 
 export class Vibration extends Component {
   constructor() {

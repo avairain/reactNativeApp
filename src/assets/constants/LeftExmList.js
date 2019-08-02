@@ -5,5 +5,5 @@ export const Rn = ['Activity', 'Btn', 'DrawerLayout', 'FlatList', 'Image', 'Imag
 
 export const RnApi = ['AccessibilityInfo', 'Alert', 'Animated', 'AppState', 'Notification', 'AsyncStorage', 'CameraRoll', 'Clipboard', 'DatePickerAndroid', 'Dimensions', 'Geolocation', 'ImageEditor', 'Keyboard', 'LayoutAnimation', 'Linking', 'Share', 'TimePickerAndroid', 'ToastAndroid', 'Vibration']
 
-export const AntD = ['AntDButton']
+export const AntD = ['AntDButton', 'ActionSheet']
  

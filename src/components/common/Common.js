@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React, { PureComponent as Component } from 'react'
 import { ToastAndroid, Animated, Text, StyleSheet, Dimensions, PermissionsAndroid } from 'react-native'
-import { shouldComponentUpdate } from 'react-addons-pure-render-mixin'
 
 const o = Dimensions.get('window')
 // console.log(o)
@@ -10,7 +9,6 @@ export default () => WrappedComponent => {
   class Common extends Component {
     constructor() {
       super()
-      WrappedComponent.shouldComponentUpdate = shouldComponentUpdate.bind(WrappedComponent)
     }
   
     render() {

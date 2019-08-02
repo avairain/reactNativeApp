@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { PureComponent as Component } from 'react'
 import { View, StyleSheet, ScrollView, Image, Platform, TouchableOpacity, Text, TextInput, ToastAndroid } from 'react-native'
-import { Button, Toast} from '@ant-design/react-native'
+import { Button, Toast, ActionSheet as AS } from '@ant-design/react-native'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 
@@ -98,6 +98,55 @@ export const AntDButton = connect(
     }
   }
 )(_AntDButton)
+
+export class ActionSheet extends Component {
+  constructor() {
+    super()
+    this.showAction = this.showAction.bind(this)
+    this.showShare = this.showShare.bind(this)
+  }
+
+  showAction() {
+    const BUTTONS = [
+      'Operation1',
+      'Operation2',
+      'Operation3',
+      'Delete',
+      'Cancel',
+    ]
+    AS.showActionSheetWithOptions({
+      title: 'Title',
+      message: 'Description',
+      options: BUTTONS,
+      cancelButtonIndex: 4,
+      destructiveButtonIndex: 3,
+    }, index => console.log(index))
+  }
+
+  showShare() {
+    const opts = {
+      message: 'Message to go with the shared url',
+      title: 'Share Actionsheet',
+    }
+    AS.showShareActionSheetWithOptions(
+      opts,
+      error => console.log(error),
+      (success, method) => {
+        console.log(success, method)
+      }
+    );
+
+  }
+
+  render() {
+    return (
+      <View>
+        <Text onPress={this.showAction}>showAction</Text>
+        <Text onPress={this.showShare}>showShare</Text>
+      </View>
+    )
+  }
+}
 
 function AntD (props) {
   const goTo = v => {

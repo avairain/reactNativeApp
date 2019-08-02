@@ -2,7 +2,7 @@
  * 只看component 了解大概 详情需要去看配置
  * https://reactnative.cn/docs/activityindicator/
  */
-import React, { Component } from 'react'
+import React, { PureComponent as Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, StyleSheet, Button, DrawerLayoutAndroid, FlatList as FL, Image as IG, ImageBackground as IGB, KeyboardAvoidingView as KBAV, Modal as Md, Picker as PK, ProgressBarAndroid as PA, RefreshControl as RC, SectionList as SL, StatusBar as SB, Switch as Sw, ToolbarAndroid as TA, TouchableNativeFeedback as TNF, TouchableWithoutFeedback as TWF, VirtualizedList as VL } from 'react-native'
 import VPA from '@react-native-community/viewpager'
 import Sl from '@react-native-community/slider'
