@@ -710,6 +710,59 @@ export class Vibration extends Component {
   }
 }
 
+export class Websocket extends Component {
+  ws = null
+  constructor() {
+    super()
+    this.websocket = this.websocket.bind(this)
+    this.state = {
+      wsm: ''
+    }
+  }
+
+  componentDidMount() {
+    const ws = this.ws = new WebSocket('ws://172.16.0.77:8888'); 
+    console.log('start to connect')
+    ws.onopen = () => {
+      // 打开一个连接
+      console.log('connected') // 发送一个消息
+    };
+    ws.onmessage = (e) => {
+      // 接收到了一个消息
+      console.log(e.data);
+      this.setState({wsm: e.data})
+    };
+    
+    ws.onerror = (e) => {
+      // 发生了一个错误
+      console.log(e);
+      this.setState({wsm: e.message})
+    };
+    
+    ws.onclose = (e) => {
+      // 连接被关闭了
+      console.log(e);
+      this.setState({wsm: e.message})
+    };
+  }
+
+  websocket() {
+    const ws = this.ws
+    console.log(ws)
+    ws.send('123')
+  }
+
+  render() {
+    const { wsm } = this.state
+    return (
+      <View>
+        <Text onPress={this.websocket}>WebSocket</Text>
+        <Text>{wsm}</Text>
+      </View>
+    )
+  }
+}
+
 function RnApi({ list, navigation }) {
   const goTo = (v) => {
     // console.log(v)
