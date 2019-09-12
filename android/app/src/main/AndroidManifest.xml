@@ -34,6 +34,14 @@
       <meta-data
         android:name="com.amap.api.v2.apikey"
         android:value="0e43cd4343d8c84369e38276155524cf" />
+      <meta-data
+        android:name="JPUSH_CHANNEL"
+      android:value="${JPUSH_CHANNEL}" />
+      <meta-data
+        android:name="JPUSH_APPKEY"
+        android:value="${JPUSH_APPKEY}" />
+      <activity android:name=".SecondActivity" />
+      <service android:name=".MyTaskService" android:enabled="true" android:label="MyTaskService" />
     </application>
 
 </manifest>

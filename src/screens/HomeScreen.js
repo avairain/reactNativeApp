@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   Image,
   Platform,
   ScrollView,
@@ -8,7 +9,8 @@ import {
   TouchableOpacity,
   View,
   AppState,
-  Linking
+  Linking,
+  NativeModules
 } from 'react-native';
 
 import { bindActionCreators } from 'redux'
@@ -16,6 +18,12 @@ import { connect } from 'react-redux'
 import { homeActions } from './actions'
 
 import { MonoText } from '../components/StyledText';
+import JPush from 'jpush-react-native'
+
+const JPushModule = NativeModules.JPushModule
+
+
+JPush.init();
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -41,6 +49,39 @@ class HomeScreen extends React.Component {
     AppState.addEventListener('change', this.link)
   }
 
+  componentDidMount() {
+    
+    this.connectListener = result => {
+      console.log("connectListener:" + JSON.stringify(result))
+    };
+    JPush.addConnectEventListener(this.connectListener);
+    //通知回调
+    this.notificationListener = result => {
+      console.log("notificationListener:" + JSON.stringify(result))
+    };
+    JPush.addNotificationListener(this.notificationListener);
+    //自定义消息回调
+    this.customMessageListener = result => {
+      console.log("customMessageListener:" + JSON.stringify(result))
+    };
+    JPush.addCustomMessagegListener(this.customMessageListener);
+    //本地通知回调 todo
+    this.localNotificationListener = result => {
+      console.log("localNotificationListener:" + JSON.stringify(result))
+    };
+    JPush.addLocalNotificationListener(this.localNotificationListener);
+    //tag alias事件回调
+    this.tagAliasListener = result => {
+      console.log("tagAliasListener:" + JSON.stringify(result))
+    };
+    JPush.addTagAliasListener(this.tagAliasListener);
+    //手机号码事件回调
+    this.mobileNumberListener = result => {
+      console.log("mobileNumberListener:" + JSON.stringify(result))
+    };
+    JPush.addMobileNumberListener(this.mobileNumberListener);
+  }
+
   componentWillUnmount() {
     AppState.removeEventListener('change', this.link)
   }
@@ -59,7 +100,13 @@ class HomeScreen extends React.Component {
               style={styles.welcomeImage}
             />
           </View>
-
+          <Button title="setLoggerEnable"
+            onPress={() => JPush.setLoggerEnable({"debug": true}
+            )}/>
+          <Button title="getRegisterID"
+            onPress={() => JPush.getRegistrationID(result =>
+                console.log("registerID:" + JSON.stringify(result))
+            )}/>
           <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
 

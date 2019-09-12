@@ -12,6 +12,8 @@ import { ImagePicker } from '@ant-design/react-native'
 import Common from '../common/Common'
 import { GetPA } from '../common/Common'
 
+console.log(PA.PERMISSIONS)
+
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
 /*
   // 辅助视障人士 

@@ -48,6 +48,7 @@
 		4E64BC970BF94C838701AE64 /* libRNCViewpager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54849815C06D439495CE456E /* libRNCViewpager.a */; };
 		18D1ECCF09E044D685947B3C /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E46CF29F0A448109A21FFFA /* libRNCWebView.a */; };
 		C45DA537CCA84436B21B5011 /* libAMapGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FEDCFB0B24E48AB9EFB729D /* libAMapGeolocation.a */; };
+		43AADE761BD24396A8958B8A /* libRNBackgroundJob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B843E78B26A04BB99EF98947 /* libRNBackgroundJob.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -370,6 +371,8 @@
 		6E46CF29F0A448109A21FFFA /* libRNCWebView.a */ = {isa = PBXFileReference; name = "libRNCWebView.a"; path = "libRNCWebView.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		C37243F77EDF489B92292F01 /* AMapGeolocation.xcodeproj */ = {isa = PBXFileReference; name = "AMapGeolocation.xcodeproj"; path = "../node_modules/react-native-amap-geolocation/lib/ios/AMapGeolocation.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		5FEDCFB0B24E48AB9EFB729D /* libAMapGeolocation.a */ = {isa = PBXFileReference; name = "libAMapGeolocation.a"; path = "libAMapGeolocation.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		84C86715481240978C713DC5 /* RNBackgroundJob.xcodeproj */ = {isa = PBXFileReference; name = "RNBackgroundJob.xcodeproj"; path = "../node_modules/react-native-background-job/ios/RNBackgroundJob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		B843E78B26A04BB99EF98947 /* libRNBackgroundJob.a */ = {isa = PBXFileReference; name = "libRNBackgroundJob.a"; path = "libRNBackgroundJob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -404,6 +407,7 @@
 				4E64BC970BF94C838701AE64 /* libRNCViewpager.a in Frameworks */,
 				18D1ECCF09E044D685947B3C /* libRNCWebView.a in Frameworks */,
 				C45DA537CCA84436B21B5011 /* libAMapGeolocation.a in Frameworks */,
+				43AADE761BD24396A8958B8A /* libRNBackgroundJob.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +606,7 @@
 				CD61D0BB2D884199B70CBFC0 /* RNCViewpager.xcodeproj */,
 				B4440619630B4062997A29D4 /* RNCWebView.xcodeproj */,
 				C37243F77EDF489B92292F01 /* AMapGeolocation.xcodeproj */,
+				84C86715481240978C713DC5 /* RNBackgroundJob.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1242,6 +1247,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myApp1.app/myApp1";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1250,6 +1256,7 @@
 					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
 					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
+					"$(SRCROOT)\..\node_modules\react-native-background-job\ios",
 				);
 			};
 			name = Debug;
@@ -1271,6 +1278,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myApp1.app/myApp1";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1279,6 +1287,7 @@
 					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
 					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
+					"$(SRCROOT)\..\node_modules\react-native-background-job\ios",
 				);
 			};
 			name = Release;
@@ -1306,6 +1315,7 @@
 					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
 					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
+					"$(SRCROOT)\..\node_modules\react-native-background-job\ios",
 				);
 			};
 			name = Debug;
@@ -1332,6 +1342,7 @@
 					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
 					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
+					"$(SRCROOT)\..\node_modules\react-native-background-job\ios",
 				);
 			};
 			name = Release;
@@ -1361,6 +1372,7 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1369,6 +1381,7 @@
 					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
 					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
+					"$(SRCROOT)\..\node_modules\react-native-background-job\ios",
 				);
 			};
 			name = Debug;
@@ -1398,6 +1411,7 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1406,6 +1420,7 @@
 					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
 					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
+					"$(SRCROOT)\..\node_modules\react-native-background-job\ios",
 				);
 			};
 			name = Release;
@@ -1434,6 +1449,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1442,6 +1458,7 @@
 					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
 					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
+					"$(SRCROOT)\..\node_modules\react-native-background-job\ios",
 				);
 			};
 			name = Debug;
@@ -1470,6 +1487,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1478,6 +1496,7 @@
 					"$(SRCROOT)\..\node_modules\@react-native-community\slider\ios",
 					"$(SRCROOT)\..\node_modules\@react-native-community\viewpager\ios",
 					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
+					"$(SRCROOT)\..\node_modules\react-native-background-job\ios",
 				);
 			};
 			name = Release;
